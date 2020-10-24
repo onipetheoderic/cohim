@@ -22,7 +22,8 @@ export default function HighwayCircleCard(props) {
     </Animatable.Text>
     </View>
     <View style={{width:'80%', marginLeft:'auto', marginRight:'auto'}}>
-    <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{textAlign:'center',fontSize:10, fontFamily:'Poppins_400Regular', color:'white',}}>
+    <Animatable.Text animation="pulse" easing="ease-out" 
+    iterationCount="infinite" style={{textAlign:'center',fontSize:9, fontFamily:'Poppins_400Regular', color:'white',}}>
    
    {props.title}
  </Animatable.Text>
@@ -37,8 +38,8 @@ export default function HighwayCircleCard(props) {
 
 const styles = StyleSheet.create({
     circularCard: {
-        width:80,
-        height:80,
+        width:60,
+        height:60,
         borderRadius:40,
         justifyContent:'center',
         borderColor:'white',

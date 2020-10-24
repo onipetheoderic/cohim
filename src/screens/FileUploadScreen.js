@@ -5,20 +5,28 @@ import {
   View,
   Dimensions,
   TextInput,
+  Text,
+  ActivityIndicator,
+  ScrollView,
   AsyncStorage,
+  TouchableOpacity
 } from 'react-native';
-
+import { DatasheetPost } from '../api/apiService';
 import {Toast} from 'native-base';
-
+import HeaderWithBack from '../components/headerWithBack';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as DocumentPicker from 'expo-document-picker';
 import { fileIntelligience } from "../helpers/fileExtensionDetector";
 import AdvertiseButton from '../components/advertiseButton';
 //checkVideoExtension checkImageExtension overallLegitFile
+import Carousel from '../components/carousel'
+import CarouselPlayGround from '../components/carouselPlayground'
 const FileUploadScreen = (props) => {    
     const { width, height } = Dimensions.get('window');
     const [token, setToken] = useState("");
     const [files, setFiles] = useState([]);
+    const [allSelected, setAllSelected] = useState([])
 
     const [needed, setNeeded] = useState([]);
     const [imagesNeeded, setImagesNeeded] = useState([]);
@@ -37,6 +45,7 @@ const FileUploadScreen = (props) => {
     
    //let get a single datasheet
     useEffect(() => {
+      setLoading(false)
         let type = props.navigation.getParam('type', null)
         let id = props.navigation.getParam('id', null);
         let title = props.navigation.getParam('title', null)
@@ -150,14 +159,16 @@ height={height} width={width} navigate={props.navigation.navigate}>
       }
   )
   
-
+  
   const MultipleUploader = async () => {
-    
     try {
-        const results = await DocumentPicker.pickMultiple({
-          type: [DocumentPicker.types.allFiles],
+        const results = await DocumentPicker.getDocumentAsync({
+          type: "*/*",
+          multiple:true,
+          copyToCacheDirectory:true
         });
-        console.log("this iis ithe result",results)
+        let resultArr = []
+        resultArr.push(results)
         // for (const res of results) {
         //   console.log(
         //     res.uri,
@@ -166,8 +177,8 @@ height={height} width={width} navigate={props.navigation.navigate}>
         //     res.size
         //   );
         // }
-        
-        let detailedFileObj = fileIntelligience(results);
+        // allSelected, setAllSelected
+        let detailedFileObj = fileIntelligience(resultArr);
         console.log("the details", detailedFileObj)
         let {images, videos, needed} = detailedFileObj;
         setImagesNeeded(images);
@@ -175,7 +186,7 @@ height={height} width={width} navigate={props.navigation.navigate}>
         setNeeded(needed);
         setFiles(needed);
         changeDefaultMsg(
-            `${results.length} Files Selected, 
+            `${resultArr.length} Files Selected, 
             \n ${images.length} Images Selected,
             \n ${videos.length} Videos Selected,
             \n ${needed.length} Permitted Files`
@@ -198,20 +209,44 @@ const showToastWithGravity = (msg) => {
 };
 
 
+const fileExtensionMaker = (extension) => {
+  if(extension=="jpeg" || extension=="png" || extension=="gif" || extension=="jpg" || extension == "bmp"){
+    return `image/${extension}`
+  }
+  else if(extension=="mp4" || extension=="avi" || extension=="mpeg"){
+    return `video/${extension}`
+  }
+  else return false
+}
+
 const submitMessage = () => {
   if(content.length>=10 && files.length>=1 ){
     setLoading(true)
-        let payload = [
-            {name: "contract_id", data: id.toString()},
-            {name: "comment", data: content.toString()},
-
-        ];
-        for(var i in files){
-            let eachcontent = {name : 'documents', filename : files[i].name, type:files[i].type}        
-            payload.push(eachcontent)
-        }
-        console.log(payload)
-        DatasheetPost(token, payload)
+        // let payload = [
+        //     {name: "contract_id", data: id.toString()},
+        //     {name: "comment", data: content.toString()},
+        // ];
+        // //let fileType = result.uri.substring(result.uri.lastIndexOf(".") + 1);
+        // for(var i in files){
+        //     let eachcontent = {
+        //       name : 'documents', 
+        //       uri : photo.uri, 
+        //       type : photo.uri.substring(photo.uri.lastIndexOf(".") + 1)
+        //     }        
+        //     payload.push(eachcontent)
+        // }
+        // console.log(payload)
+        const data = new FormData();
+        data.append('comment', content.toString()); 
+        data.append('contract_id', id.toString())
+        files.forEach((photo) => {
+          data.append('documents', {
+          uri: photo.uri,
+          type: fileExtensionMaker(photo.uri.substring(photo.uri.lastIndexOf(".") + 1)), // or photo.type
+          name: photo.name
+        });  
+      });
+        DatasheetPost(token, data)
         .then((data) => {
             console.log("succeeesosos", data)
             if(data.success==false){
@@ -223,11 +258,7 @@ const submitMessage = () => {
                 showToastWithGravity(data.message)
                 props.navigation.navigate('HighwayMenu')
             }
-        }
-        )
-    
-
-
+        });
   }
   else if(content.length<=9){
       alert("Content must be more than 9 characters")
@@ -239,7 +270,7 @@ const submitMessage = () => {
 
   return (
     <View style={{flex:1}}> 
-
+<HeaderWithBack navigation={props.navigation} color="white" />
     <View style={{backgroundColor:'green', flex: 1.6}}>
         <CarouselPlayGround>
            
@@ -282,7 +313,7 @@ const submitMessage = () => {
                 placeholder="Content" 
                 multiline={true}
                 numberOfLines={10}
-                style={{marginLeft:20,fontFamily:'Pacifico-Regular',}}
+                style={{marginLeft:20,fontFamily:'Pacifico_400Regular',}}
                 onChangeText={(text) => changeContent(text)}
                 />
             </View>

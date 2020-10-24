@@ -13,43 +13,43 @@ export default function ContractCard(props) {
           
    
        <View style={styles.eachCard}>
-        <View style={{width:'70%', marginLeft:20, }}>
+        <View style={{width:'80%', marginLeft:10, }}>
         <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, fontSize:17, fontFamily:'Poppins_400Regular', color:'#03260A'}}>
             {props.name}
         </Text>
        
-        <Text style={{textAlign:'center', fontSize:13,
-         fontFamily:'Poppins_400Regular', color:'#758578'}}>
+        <Text style={{textAlign:'center', fontSize:12,fontWeight:'bold',
+         fontFamily:'Poppins_400Regular', color:'#758578', marginBottom:10}}>
             {props.title} {props.type}
         </Text>
-        <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, 
-        fontSize:13, fontFamily:'Poppins_400Regular', color:'#758578'}}>
+        <Text style={{textAlign:'center', fontWeight:'500', marginBottom:5, 
+        fontSize:12, fontFamily:'Poppins_400Regular', color:'#758578'}}>
           Amount Certified To Date: ‎{Currency(props.amount_certified_to_date)}
         </Text>
-        <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, 
-        fontSize:13, fontFamily:'Poppins_400Regular', color:'#758578'}}>
+        <Text style={{textAlign:'center', fontWeight:'500', marginBottom:5, 
+        fontSize:12, fontFamily:'Poppins_400Regular', color:'#758578'}}>
           Contract Sum: ‎{Currency(props.contract_sum)}
         </Text>
-        <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, 
-        fontSize:12, fontFamily:'Poppins_400Regular', color:'#758578'}}>
+        <Text style={{textAlign:'center', fontWeight:'500', marginBottom:5, 
+        fontSize:10, fontFamily:'Poppins_400Regular', color:'#758578'}}>
           Project Length:  {props.project_length}
         </Text>
         <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, 
-        fontSize:12, fontFamily:'Poppins_400Regular', color:'#758578'}}>
+        fontSize:10, fontFamily:'Poppins_400Regular', color:'#758578'}}>
           Date Awarded:  {props.date_awarded}
         </Text>
         <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, 
-        fontSize:12, fontFamily:'Poppins_400Regular', color:'#758578'}}>
+        fontSize:10, fontFamily:'Poppins_400Regular', color:'#758578'}}>
           Date of Completion:  {props.date_completion}
         </Text>
         <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, 
-        fontSize:12, fontFamily:'Poppins_400Regular', color:'#758578'}}>
+        fontSize:10, fontFamily:'Poppins_400Regular', color:'#758578'}}>
           Monthly Operational Cost:  {Currency(monthly_operational_cost)}
         </Text>
         </View>
      
        <LinearGradient style={styles.circle} colors={['#33FC5E', '#0A4B12']}>
-    <Text style={{textAlign:'center', fontSize:35, fontFamily:'Poppins_400Regular', color:'white'}}>
+    <Text style={{textAlign:'center', fontSize:25, fontFamily:'Poppins_400Regular', color:'white'}}>
             {props.count}
         </Text>
         </LinearGradient>
@@ -94,7 +94,7 @@ circle: {
     position:'absolute', 
     borderRadius:35, 
     right:-30, 
-    top:30, 
+    top:40, 
     justifyContent:'center',
     width:70, 
     height:70, 

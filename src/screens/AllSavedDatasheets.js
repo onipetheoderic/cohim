@@ -9,6 +9,7 @@ import {
   Dimensions,
   AsyncStorage
 } from 'react-native';
+import HeaderWithBack from '../components/headerWithBack';
 import {datasheetkey} from '../api/constants';
 import AdvertiseButton from '../components/advertiseButton';
 import {Colors} from '../components/colors'
@@ -112,6 +113,7 @@ const deleteDatasheet = (id) => {
 
   return (
     <>
+    <HeaderWithBack navigation={props.navigation} />
       {showModal && parameters &&
       <Animatable.View duration={3000} animation="zoomInDown" style={{justifyContent:'center', borderRadius:10, position:'absolute', zIndex:1000, top:50, left:'10%', width:'80%', height:320, backgroundColor:'#07411D'}}>
            

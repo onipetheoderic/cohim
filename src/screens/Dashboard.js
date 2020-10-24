@@ -186,7 +186,7 @@ if (isLoading) {
         style={styles.image}
         source={require('../../assets/images/unnamed2.jpg')}
     >
-    <View style={{marginTop:26, marginRight:10, alignItems:'flex-end'}}>
+    <View style={{marginTop:10, marginRight:10, alignItems:'flex-end'}}>
       <TouchableOpacity onPress={()=>setUserClicked(!userClicked)}>
       <FontAwesome5 name="user" size={20} color="white" />
       </TouchableOpacity>
@@ -199,16 +199,17 @@ if (isLoading) {
       }
     </View>
       <Text style={{
-        marginTop:20,
+        marginTop:15,
         color:'white',
         fontWeight:'bold', 
         fontSize:22,
         marginLeft:40}}>Hello! {user.firstName}</Text>
-        <Text style={{fontSize:12,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
         Welcome to your Dashboard. You can perform Administrative Tasks from here. Click the Menu below
         </Text>
         <ScrollView horizontal 
-        showsHorizontalScrollIndicator={false} style={{flexDirection:'row', marginTop:-40}}>
+        showsHorizontalScrollIndicator={false} 
+        style={{flexDirection:'row', marginLeft:10,marginTop:-40}}>
       
          <HighwayCircleCard iconName="envelope" title="Send/Broadcast Messages" navigation={props.navigation} link="AdminMessage"/>
          {/* <HighwayCircleCard iconName="file-contract" title="View All Contracts" navigation={props.navigation} link="AllContracts"/> */}
@@ -298,16 +299,17 @@ style={{
             />
         </View>
         {contracts.map((data,index)=>(
-         <TouchableOpacity onPress={() => props.navigation.navigate('SingleContractPage', {
+         <TouchableOpacity 
+         onPress={() => props.navigation.navigate('SingleContractPage', {
           id: data._id,
           title: data.projectTitle,
           type_of_project: data.contractType
         })}>
-            <View style={{borderBottomWidth:1,height:70,
+            <View style={{marginTop:10,borderBottomWidth:1,height:70,
               justifyContent:'center',
               marginLeft:'auto', marginRight:'auto',width:'80%',
             borderBottomColor:'rgb(202, 207, 210)'}}>
-              <Text style={{textAlign:'center',fontSize:15, fontFamily:'Poppins_400Regular'}}>{data.projectTitle}, {data.contractType}</Text>
+              <Text style={{textAlign:'center',fontSize:14, fontFamily:'Poppins_400Regular'}}>{data.projectTitle}, {data.contractType}</Text>
             </View>
         </TouchableOpacity>
         ))}
@@ -315,7 +317,7 @@ style={{
       </View>
 {isWorksPresent &&
       <View style={{marginLeft:10, marginVertical:10}}>
-      <Text style={{fontFamily:'Poppins_400Regular', fontSize:15}}>Latest Works Contracts Across Nigeria</Text>
+      <Text style={{fontFamily:'Poppins_400Regular', fontSize:14}}>Latest Works Contracts Across Nigeria</Text>
       </View>
       }
       <ScrollView horizontal>
@@ -360,7 +362,7 @@ style={{
         </ScrollView>
 {isHousingPresent &&
         <View style={{marginLeft:10, marginVertical:10}}>
-      <Text style={{fontFamily:'Poppins_400Regular', fontSize:15}}>Latest Housing Contracts Across Nigeria</Text>
+      <Text style={{fontFamily:'Poppins_400Regular', fontSize:14}}>Latest Housing Contracts Across Nigeria</Text>
       </View>
       }
       <ScrollView horizontal>
@@ -408,7 +410,7 @@ style={{
 
         {isSpuPresent &&
       <View style={{marginLeft:10, marginVertical:10}}>
-      <Text style={{fontFamily:'Poppins_400Regular', fontSize:15}}>Latest SPU Contracts Across Nigeria</Text>
+      <Text style={{fontFamily:'Poppins_400Regular', fontSize:14}}>Latest SPU Contracts Across Nigeria</Text>
       </View>
       }
       <ScrollView horizontal>
@@ -454,7 +456,7 @@ style={{
 
         {isHdmiPresent &&
       <View style={{marginLeft:10, marginVertical:10}}>
-      <Text style={{fontFamily:'Poppins_400Regular', fontSize:15}}>Latest HDMI Contracts Across Nigeria</Text>
+      <Text style={{fontFamily:'Poppins_400Regular', fontSize:14}}>Latest HDMI Contracts Across Nigeria</Text>
       </View>
       }
       <ScrollView horizontal>
@@ -485,7 +487,7 @@ style={{
             
             elevation: 19,}}
         >
-            <Text style={{ fontSize: 18, fontFamily:'Poppins_400Regular' }}>
+            <Text style={{ fontSize: 17, fontFamily:'Poppins_400Regular' }}>
               {Math.round(contract.current_percentage)}%</Text>
         </ProgressCircle>
         </View>
@@ -541,12 +543,12 @@ image: {
     },
    
   title: {
-    marginTop:10, 
-    marginBottom:20,
+    marginTop:15, 
+    marginBottom:10,
     textAlign:'center',
     color:'#095A1F',
     fontFamily:'Poppins_400Regular', 
-    fontSize:13,
+    fontSize:12,
     
 },
 state: {
@@ -554,7 +556,7 @@ state: {
     textAlign:'center',
     color:'#095A1F',
     fontFamily:'Poppins_400Regular', 
-    fontSize:15,
+    fontSize:14,
     
 },
 currentPercentage: {
@@ -580,6 +582,7 @@ currentPercentage: {
         marginRight:'auto',
         marginBottom:10,
         borderRadius:26,
+        height:50,
         width:'90%',
         
         shadowColor: "#000",

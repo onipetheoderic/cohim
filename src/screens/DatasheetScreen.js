@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import PlayGround from '../components/playGround'
-
+import HeaderWithBack from '../components/headerWithBack';
 import {uploadInspectionDatasheet} from '../api/apiService';
 import {Colors} from '../components/colors'
 import NumericInput from 'react-native-numeric-input'
@@ -79,7 +79,7 @@ function underscoreFormatter(str){
 
   return (
     <>
-      
+       <HeaderWithBack navigation={props.navigation} />
 <PlayGround home={true} navigation={props.navigation} title="Highway Inspection Portal" height={height} width={width} navigate={props.navigation.navigate}>
 <Text style={{marginBottom:20, textAlign:'center', fontSize:17, marginVertical:10}}>{length}km</Text>
 

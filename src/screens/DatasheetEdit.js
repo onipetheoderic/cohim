@@ -13,7 +13,7 @@ import {
 
 import AdvertiseButton from '../components/advertiseButton';
 import {datasheetkey} from '../api/constants';
-
+import HeaderWithBack from '../components/headerWithBack';
 import {Toast} from 'native-base';
 import UnderscoreFormatter from '../helpers/underscoreFormatter';
 const DatasheetTemplate = (props) => {    
@@ -170,6 +170,8 @@ console.log("SSSSSSSSSSS",road)
 
 
 return (
+  <>
+   <HeaderWithBack navigation={props.navigation} />
   <ScrollView showsVerticalScrollIndicator={false} style={{marginTop:40, marginBottom:20}}>
  
     <Text style={styles.title}>Update Datasheet Details, After Inputing the Details Click on Submit</Text>
@@ -232,6 +234,7 @@ return (
     </View>
     
   </ScrollView>
+  </>
     );
   };
 

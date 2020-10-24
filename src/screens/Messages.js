@@ -18,6 +18,7 @@ import {
   
   PixelRatio,
 } from 'react-native';
+import SingleMessageHeader from '../components/singleMessageHeader';
 import { CounterContext } from "../../store";
 import MessageGround from '../components/messageGround';
 import AdvertiseButton from '../components/advertiseButton';
@@ -49,7 +50,6 @@ const HighwayMenu = (props) => {
     }
 //userToken
 const fetchFeeds = (user_token) => {
-    const {state, dispatch } = globalState;
     console.log("the tokenHHHHHHH", user_token)
     viewAllMessages(user_token).then((data) => {
         if(data.success==true){
@@ -68,7 +68,6 @@ const fetchFeeds = (user_token) => {
 }
 
 const fetchUserSection = (user_token) => {
-    
     usersInSection(user_token).then((data) => {
         console.log("the DAATA",data)
         if(data.success==true){
@@ -78,13 +77,14 @@ const fetchUserSection = (user_token) => {
 }
 
 useEffect(() => {    
+    
     AsyncStorage.getItem("@SessionObj")
     .then((result)=>{          
         let parsifiedResult = JSON.parse(result);
         if(parsifiedResult!=null){
           let userDetails = parsifiedResult.userDetails;
           let { user_token } = userDetails;
-          console.log("thy token",user_token)
+          console.log("thy token", user_token)
           setToken(user_token);
             fetchFeeds(user_token)
             fetchUserSection(user_token)
@@ -229,6 +229,7 @@ const showToastWithGravity = (msg) => {
       
 </Animatable.View>
     }
+       <SingleMessageHeader title="All Messages" navigation={props.navigation} />
 <MessageGround buttonOnpress={()=>showMsgBox()} home={false} navigation={props.navigation} title="Messages" height={height} width={width}>
 <FlatList
                 data={msgs}

@@ -1,6 +1,7 @@
 
 import React, {useState, useEffect, useContext} from 'react';
-import {View, Alert, TextInput, ImageBackground, ActivityIndicator, Text,ScrollView, TouchableOpacity, StatusBar, Dimensions, Image, StyleSheet} from 'react-native';
+import {View, Alert, TextInput, ImageBackground, ActivityIndicator,
+  BackHandler, Text,ScrollView, TouchableOpacity, StatusBar, Dimensions, Image, StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {Colors} from '../components/colors'
@@ -58,7 +59,16 @@ function underscoreFormatter(str){
  
 }
 useEffect(() => {
- 
+  const backAction = () => {
+    props.navigation.navigate('AdminMessage')
+    return true
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
 }, []);
 
 const showToastWithGravity = (msg) => {
@@ -210,7 +220,7 @@ if (isLoading) {
                 placeholder="Search Users"
                 value={searchValue}
                 underlineColorAndroid="transparent"
-                style={{marginLeft:25, marginTop:3,fontFamily:'Poppins_400Regular'}}
+                style={{marginLeft:25, height:50, marginTop:3,fontFamily:'Poppins_400Regular'}}
                 onChangeText={(value) => {
                     setQuery(value)                   
                 }}

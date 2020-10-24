@@ -183,15 +183,15 @@ if (isLoading) {
      // "northCentralLength": 52, "northEastLength": 43, "northWestLength": 39, 
         //"southEastLength": 56, "southSouthLength": 45, "southWestLength": 40
     */}
-        <View style={{flexDirection:'row'}}>
+        <View style={{flexDirection:'row', justifyContent:'center'}}>
             <StateCard navigation={props.navigation} title="North Central" count={states.northCentralLength} littleDesc="View Zone" type="North Central" />
             <StateCard navigation={props.navigation} title="North East" count={states.northEastLength} littleDesc="View Zone" type="North East" />
         </View>
-        <View style={{flexDirection:'row'}}>
+        <View style={{flexDirection:'row', justifyContent:'center'}}>
             <StateCard navigation={props.navigation} title="North West" count={states.northWestLength} littleDesc="View Zone" type="North West"/>
             <StateCard navigation={props.navigation} title="South East" count={states.southEastLength} littleDesc="View Zone" type="South East"/>
         </View>
-        <View style={{flexDirection:'row'}}>
+        <View style={{flexDirection:'row', justifyContent:'center'}}>
             <StateCard navigation={props.navigation} title="South South" count={states.southSouthLength} littleDesc="View Zone" type="South South"/>
             <StateCard navigation={props.navigation} title="South West" count={states.southWestLength} littleDesc="View Zone" type="South West"/>
         </View>

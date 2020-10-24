@@ -10,7 +10,7 @@ import {
   Dimensions, 
   StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import StateCard from '../components/zoneCard';
 import {Colors} from '../components/colors'
 import { NavigationActions, StackActions } from 'react-navigation'
 import {showHighwayAllZones, getUserDetail, doSearchContract} from '../api/apiService';
@@ -175,10 +175,17 @@ if (isLoading) {
     
     <ScrollView style={{marginTop:30}}>
     
-    <View style={{flexDirection:'row',marginTop:20,marginBottom:100, justifyContent:'space-evenly', flexWrap:'wrap'}}>
-            {states.map((state, index)=>(
-                  <StateCard navigation={props.navigation} title={state.state_name} count={state.state_count} type={state.state_name} littleDesc="View State"/>
-            ))}
+    <View style={{flexDirection:'row',
+    marginTop:20,marginBottom:100, 
+    justifyContent:'space-evenly', flexWrap:'wrap'}}>
+      {states.map((state, index)=>(
+            <StateCard 
+            navigation={props.navigation} 
+            title={state.state_name} 
+            count={state.state_count} 
+            type={state.state_name} 
+            littleDesc="View State"/>
+      ))}
         </View>
     </ScrollView>
       </View>

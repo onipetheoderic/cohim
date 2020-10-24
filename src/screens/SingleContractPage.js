@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
-import {View, Alert, Text,ScrollView, StatusBar, Dimensions, Image, StyleSheet} from 'react-native';
+import {View, Alert, Text,ScrollView, BackHandler, StatusBar, Dimensions, Image, StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as Animatable from 'react-native-animatable';
 import Video from 'react-native-video';
@@ -86,6 +86,16 @@ useEffect(() => {
         //"contracts_handled_by_contractor
         
     })
+    const backAction = () => {
+        props.navigation.navigate('Dashboard')
+        return true
+        };
+    
+        const backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          backAction
+        );
+        return () => backHandler.remove();
 }, []);
 
 
@@ -96,7 +106,8 @@ console.log("from single contract",parametersAbsent)
 
 console.log("contracts_handled_by_contractor", contracts_handled_by_contractor)
 
-const imagePresentChecker = images==undefined?false:true;
+const imagePresentChecker = images==undefined || images.length==0?false:true;
+const videoPresentChecker = videos==undefined || videos.length==0?false:true;
 const stagesPresentChecker = stages_construction==undefined?false:true;
 
 const iscontractorContractPresent = contracts_handled_by_contractor.length==0?false:true;
@@ -122,7 +133,7 @@ for(var i in stages_construction){
     <ScrollView style={{backgroundColor:'white'}}>
       <StatusBar translucent={true} backgroundColor="transparent"/>
       <View style={{marginTop:40, justifyContent:'center'}}>
-      <Text style={{fontFamily:'Poppins_400Regular',textAlign:'center', fontSize:25}}>{Contract.project_name}</Text>
+      <Text style={{fontFamily:'Poppins_400Regular',textAlign:'center', fontSize:20}}>{Contract.project_name}</Text>
       </View>
       {stagesPresentChecker &&
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginLeft:10}}>          
@@ -154,9 +165,9 @@ for(var i in stages_construction){
 
       </View>
       }
-   
+    {videoPresentChecker &&
    <ScrollView>
-   <Text style={{fontFamily:'Poppins_400Regular', fontSize:15}}>Contract Videos</Text>
+   <Text style={{marginLeft:15,  fontFamily:'Poppins_400Regular', fontSize:15}}>Contract Videos</Text>
           {videos.map((video) =>{
               return(
                 <View style={{width:'100%'}}>
@@ -180,6 +191,7 @@ for(var i in stages_construction){
                </View>
           )})}    
         </ScrollView>
+}
         {/* <View style={styles.videoContainer}>
             <Video
             paused={true}
@@ -197,8 +209,8 @@ for(var i in stages_construction){
        
         {imagePresentChecker &&
         <View>
-        <View style={{marginLeft:10}}>
-      <Text style={{fontFamily:'Poppins_400Regular', fontSize:20}}>Images of Ongoing Construction</Text>
+        <View style={{marginLeft:15}}>
+      <Text style={{fontFamily:'Poppins_400Regular', fontSize:15}}>Images of Ongoing Construction</Text>
       </View>
 
         <ScrollView horizontal>
@@ -221,7 +233,8 @@ for(var i in stages_construction){
     }
     {iscontractorContractPresent &&
         <View style={{marginLeft:10}}>
-        <Text style={{fontFamily:'Poppins_400Regular', textAlign:'center', fontSize:18}}>
+        <Text style={{fontFamily:'Poppins_400Regular', 
+        textAlign:'center', fontSize:15}}>
             Contracts Handled By Contractor
             </Text>
             {contracts_handled_by_contractor.map((stage) =>(
@@ -236,17 +249,18 @@ for(var i in stages_construction){
       <View style={[styles.bottomCard, {marginLeft:20, marginTop:30}]}>
       <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}>    
             <Text style={styles.subText}>Project Name</Text>
-            <Text style={[styles.bottomText, {fontSize:10}]}>{singleContract.projectTitle}</Text>
+            <Text style={[styles.bottomText, {fontSize:10, width:'65%'}]}>{singleContract.projectTitle}</Text>
         </View>
         <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}>    
             <Text style={styles.subText}>Contract Type</Text>
-            <Text style={[styles.bottomText, {fontSize:14}]}>{singleContract.contractType} Contract</Text>
+            <Text style={[styles.bottomText, {fontSize:10}]}>{singleContract.contractType} Contract</Text>
         </View>
         <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}>    
             <Text style={styles.subText}>Project Length</Text>
-            <Text style={[styles.bottomText, {fontSize:12}]}>{singleContract.projectLength}km</Text>
+            <Text style={[styles.bottomText, {fontSize:10}]}>{singleContract.projectLength}km</Text>
         </View>
-        <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}>    
+        <View style={{flexDirection:'row', justifyContent:'space-between',
+         marginHorizontal:20}}>    
             <Text style={styles.subText}>State</Text>
             <Text style={styles.bottomText}>{Contract.state}</Text>
         </View>
@@ -308,7 +322,7 @@ const styles = StyleSheet.create({
     bottomText: {
         fontFamily:'Poppins_400Regular',
         fontWeight:'bold',
-        fontSize:13,
+        fontSize:10,
         color: "black",
         marginLeft:10,
         marginTop:10

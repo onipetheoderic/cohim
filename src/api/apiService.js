@@ -510,139 +510,26 @@ export async function uploadInspectionDatasheet(id, type) {
     }
 }
 
-
-
-export async function fetchUserProfile(baseUrl, userToken) {
-    try {
-        let feeds = await fetch(`${baseUrl}api/user`, {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${userToken}`
-            }
-        });
-        let result = await feeds.json();
-
-        feeds = null;
-        return result;
-    } catch (e) {
-        console.warn(e.message)
-    }
-}
-
-
-export async function fetchUserPosts(baseUrl, pageId, token) {
-    try {
-        let feeds = await fetch(`${baseUrl}api/user/posts?pageId=${pageId}`, {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        let result = await feeds.json();
-
-        feeds = null;
-        return result;
-    } catch (e) {
-        console.warn(e.message)
-    }
-}
-//'Content-Type': 'multipart/form-data,octet-stream',
-export async function createFilePost(baseUrl, token, payload){
-    let link = `${baseUrl}api/writePost`
-    
-    await fetch('POST', link, {
-        Authorization: `Bearer ${token}`,
-        body: payload,
-      
-        'Content-Type' : 'application/octet-stream',
-        })
-    .then((response) => response.json())
-    .then((RetrivedData) => {
-      console.log(RetrivedData);
-    })
-    .catch((err) => {
-    console.log("tis is the errr", err);
-    })
-}
-/*
-
- try {
-        let feeds = await fetch(`${baseUrl}api/editPost/${postId}`, {
-            body: payload,
-            method: 'post',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                Accept: 'application/json',
-            }
-        });
-        let result = await feeds.json();
-
-        feeds = null;
-        return result;
-    } catch (e) {
-        console.warn('--' + e.message)
-    }
-*/ 
 export async function DatasheetPost(token, payload) {
-    try{
-        let feeds = await fetch('POST', `${baseUrl}datasheet_post`, {
-          
-            'Authorization' : `Bearer ${token}`,
-            'Content-Type' : 'application/json',
-            'Accept': 'application/json'
-    
-        }, payload)
-        let result = await feeds.json();
-
-        feeds = null;
-        return result;
-    }
-    catch (e) {
-        console.warn('--' + e.message)
-    }
-  
-}
-
-
-
-export async function updatePost(baseUrl, token, payload, postId) {
-    // console.warn(baseUrl)
-    // console.warn(token)
-    console.warn(payload)
-    // return
+    console.log("the feeds", token, payload)
     try {
-        let feeds = await fetch(`${baseUrl}api/editPost/${postId}`, {
-            body: payload,
-            method: 'post',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                Accept: 'application/json',
-            }
-        });
+        let feeds = await fetch(`${baseUrl}datasheet_post`, {
+                        method: 'POST',
+                        body: payload,
+                        headers: {
+                            'Accept': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
         let result = await feeds.json();
-
         feeds = null;
         return result;
-    } catch (e) {
-        console.warn('--' + e.message)
-    }
+
+        }
+        catch(e){
+            console.warn(e)
+        }
 }
 
-export async function deleteUserPost(baseUrl, token, id) {
-  
-    try {
-        let feeds = await fetch(`${baseUrl}api/deletePost/${id}`, {
-            method: 'delete',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                Accept: 'application/json',
-            }
-        });
-        let result = await feeds.json();
 
-        feeds = null;
-        return result;
-    } catch (e) {
-        console.warn('--' + e.message)
-    }
-}
+

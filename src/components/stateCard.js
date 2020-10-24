@@ -28,9 +28,9 @@ export default function AdvertisementButton(props) {
 
 const styles = StyleSheet.create({
     eachCard: {
-      margin:10,
+      margin:5,
       backgroundColor:'white', 
-      width:'45%', 
+      width:'40%', 
       borderTopRightRadius:40,
       height:200,
       justifyContent:'center',

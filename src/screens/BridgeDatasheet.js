@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useMemo} from 'react';
-
+import HeaderWithBack from '../components/headerWithBack';
 import {
   AsyncStorage,
   SafeAreaView,
@@ -181,7 +181,9 @@ const DatasheetTemplate = (props) => {
 
 
 return (
-  <ScrollView showsVerticalScrollIndicator={false} style={{marginTop:40, marginBottom:20}}>
+  <>
+  <HeaderWithBack navigation={props.navigation} />
+  <ScrollView showsVerticalScrollIndicator={false} style={{marginTop:50, marginBottom:20}}>
  
     <Text style={styles.title}>Enter Datasheet Details, The Title Field must Not be Empty</Text>
     <View style={{justifyContent:'center', alignSelf:'center', width:'90%'}}>
@@ -247,6 +249,7 @@ return (
     </View>
     
   </ScrollView>
+  </>
     );
   };
 

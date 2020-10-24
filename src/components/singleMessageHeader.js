@@ -43,9 +43,7 @@ const clearAsyncStorage = () => {
                 <Entypo name="chevron-thin-left" size={20} color="#52575d" />
             </TouchableOpacity>
             <Text style={styles.text}>{props.title}</Text>
-            <TouchableOpacity>
-                <Entypo name="chevron-thin-right" size={20} color="#52575d" />
-            </TouchableOpacity>
+        <View></View>
         </View>
    
   );

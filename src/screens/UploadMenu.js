@@ -1,16 +1,15 @@
 import React, {useState, useEffect} from 'react';
-
 import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
-  
+  BackHandler,
   Dimensions,
   PixelRatio,
 } from 'react-native';
-
+import HeaderWithBack from '../components/headerWithBack';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto'
 
@@ -31,6 +30,8 @@ const UploadMenu = (props) => {
     
    
     useEffect(() => {   
+
+
         GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
             timeout: 15000,
@@ -49,10 +50,13 @@ const UploadMenu = (props) => {
 
 return (
   <View style={{flex:1}}> 
-
+<HeaderWithBack navigation={props.navigation} />
   <View style={{backgroundColor:'green', flex: 1.6}}>
-    <View style={{position:'absolute', top:height/4.1, right:10, zIndex:100000}}>
-      <HighwayCircleCard iconName="road" navigation={props.navigation} link="AllSavedDatasheets" title="Saved Inspection Datasheets"/>
+    <View style={{position:'absolute', top:height/4.1, right:3, zIndex:100000}}>
+      <HighwayCircleCard iconName="road" 
+      navigation={props.navigation} 
+      link="AllSavedDatasheets" 
+      title="Saved Inspection Datasheets"/>
     </View>
       <CarouselPlayGround>
          

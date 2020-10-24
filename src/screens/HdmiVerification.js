@@ -1,18 +1,36 @@
 
 import React, {useContext, useEffect, useState} from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
+  SafeAreaView,
   StyleSheet,
   Alert,
+  ScrollView,
+  View,
+  ActivityIndicator,
   TextInput,
+  Text,
+  ImageBackground,
   Dimensions,
-  AsyncStorage,
+  Image,
 } from 'react-native';
+import ProgressCircle from 'react-native-progress-circle'
 import { CounterContext } from "../../store";
-import {getUserDetail, hdmiVerifyCodePost} from '../api/apiService';
-
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Fontisto from 'react-native-vector-icons/Fontisto'
+import {datasheetkey} from '../api/constants';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import PlayGround from '../components/playGround'
+import HighwayCard from '../components/highwayNav';
+import AsyncStorage from '@react-native-community/async-storage'
+import {allAssignedContracts, getUserDetail, hdmiVerifyCodePost} from '../api/apiService';
+import {Colors} from '../components/colors'
+import HighwayCircleCard from '../components/highwayCircleCard'
+import Truncator from "../helpers/truncator";
+import Currency from '../helpers/currency';
 import { NavigationActions, StackActions } from 'react-navigation'
 import AdvertiseButton from '../components/advertiseButton';
-
+import HeaderWithBack from '../components/headerWithBack';
 import {Toast} from 'native-base';
 
 const HdmiVerification = (props) => {    
@@ -161,7 +179,7 @@ const expirationStatus = (bool) => {
 console.log("YYYYYYYYYYYYYYYY",singleHdmi)
   return (
     <View style={{flex:1}}> 
-
+<HeaderWithBack navigation={props.navigation} color="white" />
 <View style={{backgroundColor:'green', flex: 2}}>
     <ImageBackground
         style={styles.image}
@@ -217,7 +235,7 @@ console.log("YYYYYYYYYYYYYYYY",singleHdmi)
                 value={content}
                 placeholder="FMWH-VMP-0000000000" 
                 multiline={true}
-                style={{marginLeft:20,fontSize:20, fontFamily:'AdobeClean-Regular',}}
+                style={{marginLeft:20,fontSize:20, fontFamily:'Poppins_400Regular',}}
                 onChangeText={(text) => changeContent(text)}
                 />
             </View>

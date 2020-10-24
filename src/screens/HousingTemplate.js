@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useMemo} from 'react';
-
+import HeaderWithBack from '../components/headerWithBack';
 import {
   SafeAreaView,
   StyleSheet,
@@ -156,7 +156,9 @@ if (isLoading) {
     )
 }  
 return (
-  <ScrollView showsVerticalScrollIndicator={false} style={{marginTop:40, marginBottom:20}}>
+  <>
+  <HeaderWithBack navigation={props.navigation} />
+  <ScrollView showsVerticalScrollIndicator={false} style={{marginTop:50, marginBottom:20}}>
  
     <Text style={styles.title}>Enter Housing Datasheet Details</Text>
    
@@ -208,6 +210,7 @@ return (
     </View> 
     
   </ScrollView>
+  </>
     );
   };
 

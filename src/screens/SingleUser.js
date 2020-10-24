@@ -6,7 +6,7 @@ import {
   Text,ScrollView, 
   ImageBackground,
   Dimensions, 
-  AsyncStorage,
+  BackHandler,
   Image, 
   StyleSheet} from 'react-native';
 

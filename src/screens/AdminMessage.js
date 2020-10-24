@@ -10,6 +10,7 @@ import {
   Dimensions,
   
 } from 'react-native';
+import HeaderWithBack from '../components/headerWithBack';
 import { CounterContext } from "../../store";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -164,6 +165,7 @@ const showToastWithGravity = (msg) => {
   return (
 
     <>
+    <HeaderWithBack navigation={props.navigation} />
     {showMsg &&
       <Animatable.View duration={3000} animation="zoomInDown" style={{justifyContent:'center', borderRadius:10, position:'absolute', zIndex:1000, top:50, left:'10%', width:'80%', height:320, backgroundColor:'#07411D'}}>
            

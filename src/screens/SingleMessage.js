@@ -1,7 +1,8 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {StyleSheet, SafeAreaView, ScrollView, Image, Text, View, RefreshControl, FlatList, StatusBar} from 'react-native';
+import {StyleSheet, SafeAreaView, 
+    BackHandler, ScrollView, Image, Text, AsyncStorage,
+    View, RefreshControl, FlatList, StatusBar} from 'react-native';
 import { CounterContext } from "../../store";
-
 import {viewSingleMessage} from '../api/apiService';
 import TimeAgo from 'react-native-timeago';
 import SingleMessageHeader from '../components/singleMessageHeader';
@@ -13,27 +14,36 @@ export default function SingleMessageScreen(props) {
     const [fullname, setFullname] = useState(null);
     const [time, setTime] = useState(null);
     const globalState = useContext(CounterContext);
-
+    const [token, setToken] = useState("");
  
-    const fetchSingleMsg = () => {
-        const {state, dispatch } = globalState;
+    const fetchSingleMsg = (user_token) => {
         let id = props.navigation.getParam('id', null)
-        viewSingleMessage(id, state.user.token).then((single_msg)=>{
-            console.log("GGGGGGGGG", single_msg)
-           
+        viewSingleMessage(id, user_token).then((single_msg)=>{
+            console.log(single_msg, "GGGGGGGGG")
             if(single_msg.success==true){
-                console.log("seeneder", single_msg.msg.senderId[0])
-                let fullName = single_msg.msg.senderId[0].firstName + " " + single_msg.msg.senderId[0].lastName
-                setMessage(single_msg.msg.message)
+                console.log("its successful", single_msg.message.senderId[0])
+                let fullName = single_msg.message.senderId[0].firstName + " " + single_msg.message.senderId[0].lastName
+                setMessage(single_msg.message.message)
                 setFullname(fullName)
-                setTime(single_msg.msg.createdAt)
+                setTime(single_msg.message.createdAt)
             }
 
         })
        
     }
     useEffect(() => {
-        fetchSingleMsg()
+        AsyncStorage.getItem("@SessionObj")
+        .then((result)=>{          
+            let parsifiedResult = JSON.parse(result);
+            if(parsifiedResult!=null){
+              let userDetails = parsifiedResult.userDetails;
+              let { user_token } = userDetails;
+              setToken(user_token);  
+              fetchSingleMsg(user_token)
+            }
+        })
+        
+        
       }, []);
 
 

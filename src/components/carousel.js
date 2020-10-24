@@ -16,16 +16,17 @@ const Carousel = (props) => {
     style={{ width: '100%', resizeMode: "cover", height:height/1.7}}
 >
   <Text style={{
-    marginTop:70,
+    marginTop:60,
     color:'white',
     fontWeight:'bold',
-    fontSize:22,
+    fontSize:20,
     marginLeft:40}}>{props.title} </Text>
     
-    <Text style={{fontSize:13,marginTop:20, marginLeft:40, marginRight:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+    <Text style={{fontSize:11,marginTop:20, marginLeft:40, 
+      marginRight:40, color:'white', fontFamily:'Poppins_400Regular'}}>
     {props.description}
     </Text>
-    <Text style={{fontSize:12,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+    <Text style={{fontSize:11,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
     {props.contractName}
   
     </Text>

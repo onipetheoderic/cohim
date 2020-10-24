@@ -145,6 +145,7 @@ const showToastWithGravity = (msg) => {
         
         <View style={styles.textField}>
             <TextInput
+             autoCapitalize = 'none'
              placeholderTextColor={Colors.mainGreen} 
                 placeholder="Email Address"
                 underlineColorAndroid="transparent"
@@ -211,6 +212,7 @@ const styles = StyleSheet.create({
     textField: {
       
         textAlign:'center',
+        height:50,
         justifyContent:'center',
         marginLeft:'auto',
         marginRight:'auto',

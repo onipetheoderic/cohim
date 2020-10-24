@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import HeaderWithBack from '../components/headerWithBack';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Carousel from '../components/carousel'
@@ -46,7 +46,7 @@ const HousingMenu = (props) => {
 
 return (
   <View style={{flex:1}}> 
-
+<HeaderWithBack navigation={props.navigation} color="white" />
   <View style={{backgroundColor:'green', flex: 1.6}}>
     <View style={{position:'absolute', top:height/4.1, right:10, zIndex:100000}}>
       <HighwayCircleCard iconName="road" navigation={props.navigation} link="AllSavedDatasheets" title="Saved Inspection Datasheets"/>

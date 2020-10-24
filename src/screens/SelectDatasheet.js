@@ -12,6 +12,7 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
+import HeaderWithBack from '../components/headerWithBack';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {datasheetkey} from '../api/constants';
@@ -279,22 +280,23 @@ const showToastWithGravity = (msg) => {
 
   return (
     <View style={{flex:1}}> 
-
+<HeaderWithBack navigation={props.navigation} color="white"/>
     <View style={{backgroundColor:'green', flex: 1.5}}>
         <ImageBackground
             style={styles.image}
             source={require('../../assets/images/sky3.jpg')}
         >
           <Text style={{
-            marginTop:70,
+            marginTop:60,
             color:'white',
             fontWeight:'bold',
-            fontSize:22,
-            marginLeft:40}}>File and Datasheet Upload Section</Text>
-            <Text style={{fontSize:12,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+            fontSize:20,
+            marginLeft:40,
+            marginRight:40, }}>File and Datasheet Upload Section</Text>
+            <Text style={{fontSize:11,marginTop:20, marginLeft:40, marginRight:40, color:'white', fontFamily:'Poppins_400Regular'}}>
            Here you can select the Datasheet you want to upload for:
             </Text>
-            <Text style={{fontSize:13,marginTop:20, marginLeft:40, marginRight:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+            <Text style={{fontSize:11,marginTop:20, marginLeft:40, marginRight:40, color:'white', fontFamily:'Poppins_400Regular'}}>
             {title}
             </Text>
           

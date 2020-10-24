@@ -4,14 +4,40 @@ import { StatusBar } from 'expo-status-bar';
 import { CounterContextProvider } from "./store";
 import { StyleSheet, View, AppState, AsyncStorage } from 'react-native'
 import { createSwitchNavigator, createAppContainer } from 'react-navigation'
+
+import { createStackNavigator } from 'react-navigation-stack';
+
 import { NavigationContainer } from '@react-navigation/native';
 import NetInfo from '@react-native-community/netinfo';
 import { AppLoading } from 'expo';
+import { Pacifico_400Regular } from '@expo-google-fonts/pacifico';
+import {
+  useFonts,
+  Poppins_100Thin,
+  Poppins_100Thin_Italic,
+  Poppins_200ExtraLight,
+  Poppins_200ExtraLight_Italic,
+  Poppins_300Light,
+  Poppins_300Light_Italic,
+  Poppins_400Regular,
+  Poppins_400Regular_Italic,
+  Poppins_500Medium,
+  Poppins_500Medium_Italic,
+  Poppins_600SemiBold,
+  Poppins_600SemiBold_Italic,
+  Poppins_700Bold,
+  Poppins_700Bold_Italic,
+  Poppins_800ExtraBold,
+  Poppins_800ExtraBold_Italic,
+  Poppins_900Black,
+  Poppins_900Black_Italic,
+} from '@expo-google-fonts/poppins';
+import { Font } from 'expo';
+
 import { NetworkProvider } from 'react-native-offline';
 import { Root } from "native-base";
 
 import SplashScreen from './src/screens/SplashScreen';
-import UploadSelection from './src/screens/UploadSelection';
 import SingleContractPage from './src/screens/SingleContractPage';
 import LoginScreen from './src/screens/LoginScreen';
 import Dashboard from './src/screens/Dashboard';
@@ -40,28 +66,6 @@ import HousingMenu from './src/screens/HousingMenu';
 import HousingTemplate from './src/screens/HousingTemplate';
 
 
-import {
-  useFonts,
-  Poppins_100Thin,
-  Poppins_100Thin_Italic,
-  Poppins_200ExtraLight,
-  Poppins_200ExtraLight_Italic,
-  Poppins_300Light,
-  Poppins_300Light_Italic,
-  Poppins_400Regular,
-  Poppins_400Regular_Italic,
-  Poppins_500Medium,
-  Poppins_500Medium_Italic,
-  Poppins_600SemiBold,
-  Poppins_600SemiBold_Italic,
-  Poppins_700Bold,
-  Poppins_700Bold_Italic,
-  Poppins_800ExtraBold,
-  Poppins_800ExtraBold_Italic,
-  Poppins_900Black,
-  Poppins_900Black_Italic,
-} from '@expo-google-fonts/poppins';
-
 
 export default function App() {
   state = {
@@ -83,6 +87,7 @@ let [fontsLoaded] = useFonts({
   Poppins_100Thin_Italic,
   Poppins_200ExtraLight,
   Poppins_200ExtraLight_Italic,
+  Pacifico_400Regular,
   Poppins_300Light,
   Poppins_300Light_Italic,
   Poppins_400Regular,
@@ -123,7 +128,9 @@ let [fontsLoaded] = useFonts({
 }
 }
 
-const AppSwitchNavigator = createSwitchNavigator({
+const AppSwitchNavigator = createStackNavigator(
+ 
+  {
   
   SplashScreen:SplashScreen,   
     LoginScreen:LoginScreen,
@@ -141,7 +148,6 @@ const AppSwitchNavigator = createSwitchNavigator({
     AdminMessage:AdminMessage,
     SingleUserMessage:SingleUserMessage,
     SendMsgToSection:SendMsgToSection,
-    UploadSelection:UploadSelection,
     FileUploadScreen:FileUploadScreen,
     DatasheetTemplate:DatasheetTemplate,
     BridgeDatasheet:BridgeDatasheet,
@@ -153,8 +159,10 @@ const AppSwitchNavigator = createSwitchNavigator({
     SingleUser:SingleUser,
     HousingMenu:HousingMenu,
     HousingTemplate:HousingTemplate
-  
-})
+},{
+headerMode:'none',
+}
+)
 
 const AppNavigator = createAppContainer(AppSwitchNavigator)
 

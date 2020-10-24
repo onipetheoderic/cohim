@@ -996,6 +996,11 @@
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.1.0.tgz#399f068437824fcbf6aa3da5fcf490dba2af85a3"
   integrity sha512-Y6GCqsUX6JwexQ2wmBkMiJBY6M2GpNQRTczzIGbBGhXWQxqGmP5awRcf0ZJV+OlLeJcKAzas/TW45ZLdpG3yzA==
 
+"@expo-google-fonts/pacifico@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/pacifico/-/pacifico-0.1.0.tgz#f46da10e9eeed7aa3abc2d3e15a1a3b2e4bad6eb"
+  integrity sha512-XA5hJ7aqyi+Uz4hRXD3NGmIHzUpjDoudKrFOQ/lIF+0Niu0D5v+rXV8iODy6WzhhHMmVx+kyWU0foBhG5cCsOg==
+
 "@expo-google-fonts/poppins@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/poppins/-/poppins-0.1.0.tgz#aae4df9e80d68ec9dc6764e57dc931f1f64016cd"

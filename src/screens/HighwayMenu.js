@@ -39,8 +39,6 @@ const HighwayMenu = (props) => {
       const {state, dispatch } = globalState;
       let store = async () => await AsyncStorage.removeItem('@SessionObj')
       store().then(() => {
-          console.warn('Logout successfully')
-         
           const resetAction = StackActions.reset({
               index: 0,
               actions: [
@@ -52,17 +50,12 @@ const HighwayMenu = (props) => {
           dispatch({ type: 'logOut',payload:{}})
           props.navigation.dispatch(resetAction);
       }).catch((err) => {
-          console.warn('Logout failed', err.message)
       })
   }
   
 
     useEffect(() => {
-      // Return the function to unsubscribe from the event so it gets removed on unmount
-    
       const {state, dispatch } = globalState;
-
-      console.log("this is the state", state)
       let dataSheetArray = async () => await AsyncStorage.getItem(datasheetkey)
         
         AsyncStorage.getItem("@SessionObj")
@@ -71,17 +64,13 @@ const HighwayMenu = (props) => {
             if(parsifiedResult!=null){
               let userDetails = parsifiedResult.userDetails;
               let { user_token } = userDetails;
-              console.log(user_token)
               getUserDetail(user_token)
               .then((data) => {
-              console.log("userfffffl", data)
               if(data.success==true){
                 setUser(data.user);
                 dataSheetArray().then((val) => {
-                  console.log("the val", val)
                   if (val) {
                     let Datasheets = JSON.parse(val)
-                    console.log("DDDDD",Datasheets)
                     dispatch({ type: 'addToDatasheetArray',payload:Datasheets})
                     setSavedDatasheet(Datasheets)          
                   }
@@ -96,7 +85,6 @@ const HighwayMenu = (props) => {
             })
               allAssignedContracts(user_token)
               .then((data) => {
-              console.log("lllllllllllllllllllll", data)
               setRoad(data.road);
               setBridge(data.bridge);
               setHousing(data.housing);
@@ -117,17 +105,6 @@ const HighwayMenu = (props) => {
 const roadExist = road.length==0?false:true;
 const bridgeExist = bridge.length==0?false:true;
 const housingExist = housing.length==0?false:true;
-/*
-
-<View style={{backgroundColor:'white', flexDirection:'row',marginTop:20,marginBottom:10, justifyContent:'space-evenly', flexWrap:'wrap'}}>
-      <HighwayCard iconName="road" title="Saved Inspection Datasheets" navigation={props.navigation} link="AllSavedDatasheets" />
-      <HighwayCard iconName="envelope" title="View/Send Messages" navigation={props.navigation} link="Messages" />
-      <HighwayCard iconName="water" title="Completed Road/Bridge" link="" />
-  
-    </View>
-*/ 
-
-console.log(roadExist, bridgeExist, housingExist)
 
   return (
     <View style={{flex:1}}> 
@@ -190,7 +167,9 @@ console.log(roadExist, bridgeExist, housingExist)
     }
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
     {housing.map((contract) => (
-              <TouchableOpacity onPress={() => props.navigation.navigate('SelectDatasheet', {
+              <TouchableOpacity 
+              key={contract.id}
+              onPress={() => props.navigation.navigate('SelectDatasheet', {
                 id: contract.id,
                 type: "housing",
                 token:token,
@@ -242,7 +221,10 @@ console.log(roadExist, bridgeExist, housingExist)
 
 
     {bridge.map((contract) => (
-        <TouchableOpacity onPress={() => props.navigation.navigate('SelectDatasheet', {
+        <TouchableOpacity
+        key={contract.id}
+        onPress={() => props.navigation.navigate('SelectDatasheet', {
+          
           id: contract.id,
           type: "road",
           token:token,
@@ -250,10 +232,7 @@ console.log(roadExist, bridgeExist, housingExist)
         })}>
       <View style={[styles.eachCard]}>
       <Text style={styles.title}>{Truncator(contract.title, 45)}</Text>
-        {/* 
-        <Text style={styles.state}>{contract.state} {contract.lga}</Text>
-        <Text style={styles.currentPercentage}>{Math.round(contract.current_percentage)}%</Text>
-        <Text style={styles.state}>{contract.contractor}</Text>            */}
+       
         <View style={{alignSelf:'center'}}>
         <ProgressCircle
       percent={contract.current_percentage}
@@ -292,12 +271,10 @@ console.log(roadExist, bridgeExist, housingExist)
       <Text style={styles.contractTitle}>Road Contract Your are Assigned To</Text>
        }
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-    
-    
-
-
           {road.map((contract) => (
-              <TouchableOpacity onPress={() => props.navigation.navigate('SelectDatasheet', {
+              <TouchableOpacity 
+              key={contract.id}
+              onPress={() => props.navigation.navigate('SelectDatasheet', {
                 id: contract.id,
                 type: "road",
                 token:token,
@@ -382,7 +359,8 @@ const styles = StyleSheet.create({
     contractTitle: {
       fontFamily: "Poppins_400Regular",
       color: "#3e3e3e",
-      fontSize:17,
+      fontSize:14,
+      marginTop:10,
       marginLeft:10
     },
     eachCard: {
@@ -405,12 +383,12 @@ elevation: 19,
  
  
   title: {
-    marginTop:10, 
+    marginTop:16, 
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
     fontFamily:'Poppins_400Regular', 
-    fontSize:13,
+    fontSize:10,
     
 },
 state: {
@@ -418,7 +396,7 @@ state: {
     textAlign:'center',
     color:'#095A1F',
     fontFamily:'Poppins_400Regular', 
-    fontSize:15,
+    fontSize:11,
     
 },
 currentPercentage: {

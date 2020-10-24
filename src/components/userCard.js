@@ -14,15 +14,17 @@ export default function UserCard(props) {
           
    
        <View style={styles.eachCard}>
-        <View style={{width:'70%', marginLeft:20, }}>
-        <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, fontSize:17, fontFamily:'Poppins_400Regular', color:'#03260A'}}>
+        <View style={{width:'77%', marginLeft:20, }}>
+        <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10,
+         fontSize:15, fontFamily:'Poppins_400Regular', color:'#03260A'}}>
             {props.name}
         </Text>
         <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, 
-        fontSize:17, fontFamily:'Poppins_400Regular', color:'#758578'}}>
+        fontSize:14, fontFamily:'Poppins_400Regular', color:'#758578'}}>
             {props.phoneNumber}
         </Text>
-        <Text style={{textAlign:'center', fontSize:15, fontFamily:'Poppins_400Regular', color:'#03260A'}}>
+        <Text style={{textAlign:'center', fontSize:13, 
+        fontFamily:'Poppins_400Regular', color:'#03260A'}}>
             {props.title} {props.type}
         </Text>
         </View>
