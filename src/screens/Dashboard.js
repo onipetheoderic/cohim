@@ -268,7 +268,7 @@ tickFormat={allStates}
 style={{
   axis: {stroke: "white"},
   axisLabel: {fontSize: 20, padding: 10},
-  tickLabels: {fontSize: 10, fontFamily:'Poppins_400Regular', padding: 5}
+  tickLabels: {fontSize: 10, padding: 5}
 }}
 />
 </VictoryChart>
