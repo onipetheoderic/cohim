@@ -4,6 +4,7 @@ import {View, Alert, Text,ScrollView, BackHandler, StatusBar, Dimensions, Image,
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as Animatable from 'react-native-animatable';
 import Video from 'react-native-video';
+import HeaderWithBack from '../components/headerWithBack';
 import {Colors} from '../components/colors'
 import {VictoryLabel, VictoryBar, VictoryPie, VictoryChart, VictoryTheme } from "victory-native";
 import {Contract} from '../api/contract';
@@ -131,6 +132,7 @@ for(var i in stages_construction){
   return (
 
     <ScrollView style={{backgroundColor:'white'}}>
+        <HeaderWithBack navigation={props.navigation} color="black"/>
       <StatusBar translucent={true} backgroundColor="transparent"/>
       <View style={{marginTop:40, justifyContent:'center'}}>
       <Text style={{fontFamily:'Poppins_400Regular',textAlign:'center', fontSize:20}}>{Contract.project_name}</Text>

@@ -120,6 +120,7 @@ if (isLoading) {
 }  
   return (
 <View style={{flex:1}}>
+<HeaderWithBack navigation={props.navigation} color="white"/>
 <View style={{backgroundColor:'green', flex: 2}}>
     <ImageBackground
         style={styles.image}

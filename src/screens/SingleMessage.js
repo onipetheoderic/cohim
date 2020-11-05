@@ -6,7 +6,7 @@ import { CounterContext } from "../../store";
 import {viewSingleMessage} from '../api/apiService';
 import TimeAgo from 'react-native-timeago';
 import SingleMessageHeader from '../components/singleMessageHeader';
-
+import HeaderWithBack from '../components/headerWithBack';
 
 
 export default function SingleMessageScreen(props) {

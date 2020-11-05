@@ -9,11 +9,11 @@ export default function SignInButton(props) {
   let {handlePress} = props
   return (
    
-        <TouchableHighlight style={{flex:1, margin:40, justifyContent:'center'}}>
+        <TouchableOpacity onPress={props.onPress} style={{flex:1, margin:40, justifyContent:'center'}}>
         <LinearGradient style={{borderRadius:30,height:45, justifyContent:'center'}} colors={[Colors.mainGreen, Colors.primaryGreen]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
             <Text style={{textAlign:'center', fontFamily:'Poppins_400Regular', color:'white', fontSize:16}}>{props.title}</Text>
         </LinearGradient>
-        </TouchableHighlight>
+        </TouchableOpacity>
     
   );
 }

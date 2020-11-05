@@ -5,6 +5,7 @@ import {
   ActivityIndicator, 
   Text,ScrollView, 
   AsyncStorage,
+  Platform,
   TextInput,
   ImageBackground,
   TouchableOpacity, 
@@ -121,10 +122,12 @@ useEffect(() => {
 
 
 const logOut = () => {
+  console.log("the logout functions")
+  setLoading(true)
   let store = async () => await AsyncStorage.removeItem('@SessionObj')
   store().then(() => {
       console.warn('Logout successfully')
-     
+      setLoading(false)
       const resetAction = StackActions.reset({
           index: 0,
           actions: [
@@ -186,16 +189,22 @@ if (isLoading) {
         style={styles.image}
         source={require('../../assets/images/unnamed2.jpg')}
     >
-    <View style={{marginTop:10, marginRight:10, alignItems:'flex-end'}}>
+    <View style={{marginTop:Platform.OS === 'android' ? 10 : 30, marginRight:13, alignItems:'flex-end'}}>
       <TouchableOpacity onPress={()=>setUserClicked(!userClicked)}>
       <FontAwesome5 name="user" size={20} color="white" />
       </TouchableOpacity>
+    
     {userClicked &&
-      <View style={{borderRadius:7, backgroundColor:'white', position:'absolute', top:25, width:60, height:30, justifyContent:'center'}}>
-        <TouchableOpacity onPress={()=>logOut()}>
+   
+      <TouchableOpacity onPress={()=>logOut()} style={{
+        borderRadius:7,
+      backgroundColor:'white',
+      top:15, width:60, height:30, left:10,
+      justifyContent:'center'}}>
           <Text style={{color:'black', fontFamily:'Poppins_400Regular', textAlign:'center'}}>Logout</Text>
-        </TouchableOpacity>       
-      </View>
+              
+      </TouchableOpacity>
+      
       }
     </View>
       <Text style={{

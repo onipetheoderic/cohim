@@ -13,6 +13,7 @@ import {
 import { CounterContext } from "../../store";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import HeaderWithBack from '../components/headerWithBack';
 import AdvertiseButton from '../components/advertiseButton';
 import {getAllSections,sendMsgToSection, sendMsgToTopic, viewAllMessages} from '../api/apiService';
 import {Colors} from '../components/colors'

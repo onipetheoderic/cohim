@@ -113,7 +113,7 @@ const deleteDatasheet = (id) => {
 
   return (
     <>
-    <HeaderWithBack navigation={props.navigation} />
+    <HeaderWithBack navigation={props.navigation} color="black"/>
       {showModal && parameters &&
       <Animatable.View duration={3000} animation="zoomInDown" style={{justifyContent:'center', borderRadius:10, position:'absolute', zIndex:1000, top:50, left:'10%', width:'80%', height:320, backgroundColor:'#07411D'}}>
            
@@ -131,7 +131,7 @@ const deleteDatasheet = (id) => {
     }
 <ScrollView>
 <Text style={{fontFamily:'Poppins_400Regular', marginTop:40, textAlign:'center',
- fontSize:17, margin:10}}>List of Inspection Datasheets Saved By You ({savedDatasheet.length})</Text>
+ fontSize:14, margin:10}}>List of Inspection Datasheets Saved By You ({savedDatasheet.length})</Text>
 <View style={{marginBottom:70}}>
 
 {savedDatasheet.map((savedDatasheet, index) => (

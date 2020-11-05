@@ -53,9 +53,10 @@ useEffect(() => {
 
 
 
-const loginPost = () =>{   
-    const {state, dispatch } = globalState;
+const loginPost = () => {   
+    console.log("thtoooeoeoeoe")
     setLoading(true)
+    const {state, dispatch } = globalState;
     console.log("login details",email, password)
     if (email.length < 1 || password.length < 1) {
         // alert('Both email/password are required')
@@ -68,7 +69,7 @@ const loginPost = () =>{
         formData.append('password', password);
         formData.append('devise_token', state.deviseToken)
         doLogin(formData).then((data) => {
-         
+         console.log("ddddd", data)
             if (data.success==true) {   
                 setLoading(false)
                 const isSuper = data.section == "all_sections" ?true:false;
@@ -117,13 +118,13 @@ const showToastWithGravity = (msg) => {
   };
 
 
-  if (isLoading) {
-    return (
-      <View style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator size="large" color="#07411D" />
-      </View>
-    )
-  }
+//   if (isLoading) {
+//     return (
+//       <View style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//         <ActivityIndicator size="large" color="#07411D" />
+//       </View>
+//     )
+//   }
   return (
     <>
     
@@ -178,16 +179,14 @@ const showToastWithGravity = (msg) => {
             />
         </View>
         <View style={{marginVertical:10}}>
+        {isLoading &&
+            <ActivityIndicator size="large" color="#07411D" />
+        }
             
-            <TouchableOpacity onPress={()=>loginPost()}>
-                <SignInButton title="SIGN IN" />
-            </TouchableOpacity>
+           
+                <SignInButton title="SIGN IN" onPress={()=>loginPost()} />
             
-            {isLoading &&
-            <View style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <ActivityIndicator size="large" color="#07411D" />
-            </View>
-            }
+            
         </View>
         
         </Animatable.View>

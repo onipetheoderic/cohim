@@ -27,7 +27,7 @@ import { submitMsg, viewAllMessages,usersInSection, viewSingleMessage} from '../
 import {Colors} from '../components/colors'
 import * as Animatable from 'react-native-animatable';
 import {Toast} from 'native-base';
-
+import HeaderWithBack from '../components/headerWithBack';
 
 const HighwayMenu = (props) => {    
     const { width, height } = Dimensions.get('window');
@@ -229,7 +229,8 @@ const showToastWithGravity = (msg) => {
       
 </Animatable.View>
     }
-       <SingleMessageHeader title="All Messages" navigation={props.navigation} />
+      
+       <HeaderWithBack navigation={props.navigation} color="black"/>
 <MessageGround buttonOnpress={()=>showMsgBox()} home={false} navigation={props.navigation} title="Messages" height={height} width={width}>
 <FlatList
                 data={msgs}

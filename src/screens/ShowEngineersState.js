@@ -16,6 +16,7 @@ import { NavigationActions, StackActions } from 'react-navigation'
 import {showHighwayAllZones, getUserDetail, doSearchContract} from '../api/apiService';
 import HighwayCircleCard from '../components/highwayCircleCard'
 import { CounterContext } from "../../store";
+import HeaderWithBack from '../components/headerWithBack';
 //// count, littleDesc, title
 const screenWidth = Dimensions.get("window").width;
 import {Toast} from 'native-base';
@@ -132,6 +133,7 @@ if (isLoading) {
 }  
   return (
 <View style={{flex:1}}>
+<HeaderWithBack navigation={props.navigation} color="white"/>
 <View style={{backgroundColor:'green', flex: 2}}>
     <ImageBackground
         style={styles.image}

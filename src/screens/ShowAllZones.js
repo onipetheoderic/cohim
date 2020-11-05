@@ -14,6 +14,7 @@ import {
   StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../components/colors';
+import HeaderWithBack from '../components/headerWithBack';
 import { NavigationActions, StackActions } from 'react-navigation'
 import {showAllZones, doSearchContract} from '../api/apiService';
 import HighwayCircleCard from '../components/highwayCircleCard'
@@ -137,6 +138,7 @@ if (isLoading) {
 }  
   return (
 <View style={{flex:1}}>
+<HeaderWithBack navigation={props.navigation} color="white"/>
 <View style={{backgroundColor:'green', flex: 2}}>
     <ImageBackground
         style={styles.image}
