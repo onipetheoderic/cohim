@@ -19,13 +19,14 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "com.mabtostrong.cohims",
       "usesIcloudStorage": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.onipetheoderic.cohims"
+      "package": "com.mabtostrong.cohims"
     }
   }
 }
