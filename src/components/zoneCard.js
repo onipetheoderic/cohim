@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
       marginBottom:20,
       textAlign:'center',
       color:'#095A1F',
-      fontFamily:'Poppins_400Regular', 
+      fontFamily:'Montserrat_400Regular', 
       fontSize:13,
       
   },
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
       marginTop:5, 
       textAlign:'center',
       color:'#095A1F',
-      fontFamily:'Poppins_400Regular', 
+      fontFamily:'Montserrat_400Regular', 
       fontSize:25,
       
   },
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
       marginTop:10, 
       textAlign:'center',
       color:'white',
-      fontFamily:'Poppins_400Regular', 
+      fontFamily:'Montserrat_400Regular', 
       fontSize:37,
   },
   

@@ -1,19 +1,20 @@
 
 import React, {useContext, useEffect, useState} from 'react';
-import {View, TextInput, AsyncStorage, ActivityIndicator, Alert, Text, TouchableOpacity, StatusBar, Dimensions, Image, StyleSheet} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {View, AsyncStorage, Text, TouchableOpacity, Dimensions, Image, StyleSheet} from 'react-native';
 import { CounterContext } from "../../store";
-import * as Animatable from 'react-native-animatable';
-import {Colors} from '../components/colors'
+
 import { doLogin, } from '../api/apiService'
-import SignInButton from '../components/signInButton'
+import Spinner from 'react-native-loading-spinner-overlay';
+import { LinearGradient } from 'expo-linear-gradient';
 // import messaging from '@react-native-firebase/messaging';
-
+import FormField from '../components/FormFields/FormField';
 import {Toast} from 'native-base';
+import AuthButton from '../components/AuthButton'
 
-const LoginScreen = (props) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+
+export default function Login(props) {
+    const [value, changeValue] = React.useState({email:"",password:""})
+
     const [isLoading, setLoading] = useState(false)
     const { width, height } = Dimensions.get('window');
     const globalState = useContext(CounterContext);    
@@ -44,25 +45,36 @@ useEffect(() => {
 }, []);
 
 
-// const departmentSubscriber = (section) =>{
-//     messaging()
-//     .subscribeToTopic(section)
-//     .then(() => console.log('Subscribed to sectional topic'));
+const handleForm = (name, text) => {
+    console.log("the vals", value)
+    changeValue({...value, [name]:text})   
+}
 
-// }
 
+const validate = (text) => {
+    console.log(text);
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (reg.test(text) === false) {
+        return false
+    }
+    else {
+        return true
+    }
+}
 
 
 const loginPost = () => {   
-    console.log("thtoooeoeoeoe")
     setLoading(true)
     const {state, dispatch } = globalState;
-    console.log("login details",email, password)
+    let { email, password } = value
     if (email.length < 1 || password.length < 1) {
-        // alert('Both email/password are required')
         showToastWithGravity("email and Password is required")
         setLoading(false)
     } 
+    if(validate(email)===false){
+        showToastWithGravity("Invalid Email Address")
+        setLoading(false)
+    }
     else {
         let formData = new FormData();
         formData.append('email', email);
@@ -117,119 +129,96 @@ const showToastWithGravity = (msg) => {
     })
   };
 
+  const loadSpinner = isLoading ? true : false;
 
-//   if (isLoading) {
-//     return (
-//       <View style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//         <ActivityIndicator size="large" color="#07411D" />
-//       </View>
-//     )
-//   }
   return (
-    <>
-    
-      <StatusBar translucent={true} backgroundColor="transparent"/>
-        <View style={{flex:1, justifyContent:'center', backgroundColor:'white'}} duration={3000} animation="zoomInUp">
-       
-        <Animatable.View duration={2500} animation="zoomInUp" 
-        style={{marginBottom:10,justifyContent:'center'}}>
-            <View style={{justifyContent:'center'}}>
-            <Image
-        style={{width:130, height:130, marginLeft:'auto', marginRight:'auto'}}
-        source={require('../../assets/images/logo.png')}
-      />
-      <Text style={{fontSize:20, fontFamily:'Poppins_400Regular', textAlign:'center', marginBottom:30,}}>Cohims</Text>
+
+        <View style={styles.container}>
+            <View style={styles.logoParent}>
+                <Image source={require('../../assets/images/logo.png')} style={styles.avatar}/>
+               <Text style={styles.logoText}>CONTRACT PERFORMANCE MONITORING AND HIGHWAY ROAD ACCESS MANAGEMENT SYSTEM</Text>
+               
             </View>
-        <View style={{width:'85%', marginLeft:'auto', marginRight:'auto',}}>
-        <Text style={{fontSize:12, fontFamily:'Poppins_400Regular', color:"#a79d9d"}}>Email Address</Text>
+            <LinearGradient  colors={['#43F476', '#0E481F']} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={styles.formParent}>
+                
+                <FormField handleForm={handleForm} name="email" value={value.email} marginVertical={10} placeholder="mail@gmail.com" secure={false} icon="user"/>
+                <FormField handleForm={handleForm} name="password" value={value.password} marginVertical={10} placeholder="password" secure={true} icon="lock"/>
+                <AuthButton title="SIGN IN" marginVertical={30} onPress={()=>loginPost()}/>
+                <View style={styles.signupCont}>
+                <Text style={styles.signUpText}>Want to Upload Your Datasheet Offline? </Text>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('UploadMenu')}>
+                <Text style={styles.signUpText2}>Click Here </Text>
+                </TouchableOpacity>
+               
+                </View>
+                
+               
+            </LinearGradient>
+            <Spinner
+          //visibility of Overlay Loading Spinner
+          visible={loadSpinner}
+          //Text with the Spinner 
+          textContent="loading"
+          //Text style of the Spinner Text
+          textStyle={styles.spinnerTextStyle}
+        />
         </View>
-        
-        <View style={styles.textField}>
-            <TextInput
-             autoCapitalize = 'none'
-             placeholderTextColor={Colors.mainGreen} 
-                placeholder="Email Address"
-                underlineColorAndroid="transparent"
-                style={{marginLeft:25, marginTop:3}}
-                onChangeText={(value) => {
-                    setEmail(value)
-                   
-                }}
-            />
-        </View>
-       
-        </Animatable.View>
-      
-        <Animatable.View duration={2500} animation="zoomInUp" 
-        style={{marginTop:13, justifyContent:'center'}}>
-            <View style={{width:'85%', marginLeft:'auto', marginRight:'auto',}}>
-        <Text style={{fontSize:12, fontFamily:'Poppins_400Regular',  color:"#a79d9d"}}>
-            Password</Text>
-        </View>
-        <View style={styles.textField}>
-            <TextInput
-            placeholderTextColor={Colors.mainGreen} 
-                placeholder="Password"
-                secureTextEntry
-                underlineColorAndroid="transparent"
-                style={{marginLeft:25, marginTop:3}}
-                onChangeText={(value) => {
-                    setPassword(value)                   
-                }}
-            />
-        </View>
-        <View style={{marginVertical:10}}>
-        {isLoading &&
-            <ActivityIndicator size="large" color="#07411D" />
-        }
-            
-           
-                <SignInButton title="SIGN IN" onPress={()=>loginPost()} />
-            
-            
-        </View>
-        
-        </Animatable.View>
-           
-            
-            </View>
-<View style={{marginVertical:20, justifyContent:'center', backgroundColor:'white'}}>
-    {/* <Text style={{textAlign:'center', fontFamily:'Poppins_400Regular', color:"#a79d9d"}}>
-        HDMI Registration
-    </Text> */}
-    <TouchableOpacity onPress={()=>props.navigation.navigate('UploadMenu')}>
-    <Text style={{textAlign:'center', fontFamily:'Poppins_400Regular', color:"#a79d9d"}}>
-        Upload Inspection Datasheet
-    </Text>
-    </TouchableOpacity>
-</View>
-    </>
   );
-};
 
+}
 const styles = StyleSheet.create({
-    textField: {
-      
-        textAlign:'center',
-        height:50,
+    spinnerTextStyle: {
+        color: '#FFF',
+      },
+    avatar: {
+        width:100,
+        height:100,
+        alignSelf:'center'
+    },
+    signupCont: {
+        flexDirection:'row',
+        justifyContent:'center'
+    },
+    signupCont2: {
+        marginTop:5,
+        flexDirection:'row',
+        justifyContent:'center'
+    },
+    signUpText2: {
+        fontFamily:'Montserrat_600SemiBold',
+        fontSize:14,
+        color: 'white',
+    },
+    signUpText: {
+        fontFamily:'Montserrat_400Regular',
+        fontSize:12,
+        color: 'black',
+    },
+    logoText: {
+        marginHorizontal:10,
+        fontSize:15,
+        fontFamily:'Montserrat_600SemiBold',
+        color:'green',
+        alignSelf:'center',
+        textAlign:'center'
+    },  
+    logoParent: {
+        marginTop:20,
+        flex: 1,
+        backgroundColor:'white',
         justifyContent:'center',
-        marginLeft:'auto',
-        marginRight:'auto',
-        borderRadius:26,
-        width:'85%',
-        
-        shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 4,
-},
-shadowOpacity: 0.41,
-shadowRadius: 9.11,
-
-elevation: 8,
-    }
-})
-
-
-
-export default LoginScreen;
+    },
+    formParent: {
+        flex: 1.8,
+        justifyContent:'center',
+        paddingTop:30,
+        flexDirection:'column',
+        borderTopRightRadius:30,
+        borderTopLeftRadius:30
+    },
+    container: {
+      flex: 1,
+    backgroundColor:'white'
+    },
+   
+  });

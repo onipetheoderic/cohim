@@ -16,7 +16,7 @@ export default function MsgCard(props) {
        <View style={styles.eachCard}>
         <View style={{width:'50%', marginLeft:20, }}>
         <Text animation="pulse" easing="ease-out" iterationCount="infinite"
-        style={{textAlign:'center', fontSize:15, fontFamily:'Poppins_400Regular', color:'#03260A'}}>
+        style={{textAlign:'center', fontSize:15, fontFamily:'Montserrat_400Regular', color:'#03260A'}}>
             {props.title}
         </Text>
         </View>
@@ -100,7 +100,7 @@ image: {
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -108,7 +108,7 @@ state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -116,7 +116,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

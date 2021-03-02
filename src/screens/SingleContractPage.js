@@ -27,7 +27,7 @@ const LoginScreen = (props) => {
 
     const [ total_money_supposed_to_be_spent, changeTotalMoneySpent ] = useState("")
     const [singleContract, changeContract] = useState({})
-    const [stages_construction, changeStages] = useState([]);
+  
     const [images, changeImages] = useState([]);
     const [videos, changeVideos] = useState([]);
     const [dailyBudget, changeDailyBudget] = useState("");
@@ -59,10 +59,10 @@ const _default = (str) => {
 }
 
 useEffect(() => {
-    console.log(props.navigation)
+   
     let type_of_project = props.navigation.getParam('type_of_project', null);
     let id = props.navigation.getParam('id', null);
-    console.log("this is the type n id", type_of_project, id)
+  
     getSingleContract(id, type_of_project).then((data)=>{
        
       
@@ -79,12 +79,10 @@ useEffect(() => {
         }
        
         changeContract(data.data);
-        changeStages(JSON.parse(data.componentData));
         changeTotalMoneySpent(data.total_money_supposed_to_be_spent);
         changeMoneyPaidSoFar(data.moneyPaidSoFar);
         changeSupposedPercentage(data.supposed_percentage)
 
-        //"contracts_handled_by_contractor
         
     })
     const backAction = () => {
@@ -102,74 +100,33 @@ useEffect(() => {
 
 let parametersAbsent = !Object.keys(singleContract).length;
 
-console.log("from single contract",parametersAbsent)
-// console.log("videos",contract_videos)
-
-console.log("contracts_handled_by_contractor", contracts_handled_by_contractor)
 
 const imagePresentChecker = images==undefined || images.length==0?false:true;
 const videoPresentChecker = videos==undefined || videos.length==0?false:true;
-const stagesPresentChecker = stages_construction==undefined?false:true;
+
 
 const iscontractorContractPresent = contracts_handled_by_contractor.length==0?false:true;
 
-
-  
-const graphDataFormat = [];
-for(var i in stages_construction){
-    let format = {
-        x: i,
-        y:parseInt(stages_construction[i].component_score)/50,
-        label:truncator(stages_construction[i].component_name, 13)
+console.log("total_money_supposed_to_be_spent", total_money_supposed_to_be_spent)
+const NaNRemover = (value) => {
+    if(typeof value !== "number"){
+        return "0"
     }
-    if(stages_construction[i].component_score!=undefined)
-    {
-        graphDataFormat.push(format)
-    }
-    
+    else return value
 }
-//https://www.radiantmediaplayer.com/media/big-buck-bunny-360p.mp4
   return (
 
     <ScrollView style={{backgroundColor:'white'}}>
         <HeaderWithBack navigation={props.navigation} color="black"/>
-      <StatusBar translucent={true} backgroundColor="transparent"/>
-      <View style={{marginTop:40, justifyContent:'center'}}>
-      <Text style={{fontFamily:'Poppins_400Regular',textAlign:'center', fontSize:20}}>{Contract.project_name}</Text>
+    
+      <View style={{marginTop:50, justifyContent:'center'}}>
+      <Text style={{fontFamily:'Montserrat_400Regular',textAlign:'center', fontSize:20}}>{Contract.project_name}</Text>
       </View>
-      {stagesPresentChecker &&
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginLeft:10}}>          
-       
-        
-        <VictoryPie
-         data={graphDataFormat}  
-         labelComponent={<VictoryLabel angle={-60}/>}
-        
-         style={{fontSize:8, labels:{fontSize:8}}}       
-        />
-               
-      </ScrollView>
-}
-
-{stagesPresentChecker &&
-      <View style={{marginLeft:10}}>
-      <Text style={{fontFamily:'Poppins_400Regular', textAlign:'center', fontSize:18}}>
-        Stages of Construction
-        </Text>
-        {stages_construction.map((stage) =>(
-              <Text style={{fontSize:13, marginHorizontal:5, marginVertical:10, fontFamily:'Poppins_400Regular'}}>
-              <FontAwesome5 name="location-arrow" size={10} color="#07411D" />
-               {stage.component_name} ({stage.component_score})
-            </Text>
-        ))}
-        
     
 
-      </View>
-      }
     {videoPresentChecker &&
    <ScrollView>
-   <Text style={{marginLeft:15,  fontFamily:'Poppins_400Regular', fontSize:15}}>Contract Videos</Text>
+   <Text style={{marginLeft:15,  fontFamily:'Montserrat_400Regular', fontSize:15}}>Contract Videos</Text>
           {videos.map((video) =>{
               return(
                 <View style={{width:'100%'}}>
@@ -184,7 +141,7 @@ for(var i in stages_construction){
             source={{uri: imageUrl+singleVideo}}                         
 
             style={styles.video}/>
-            <Text style={{fontFamily:'Poppins_400Regular', fontSize:10}}>{video.comment}</Text>
+            <Text style={{fontFamily:'Montserrat_400Regular', fontSize:10}}>{video.comment}</Text>
         </View>
                 
                    
@@ -212,7 +169,7 @@ for(var i in stages_construction){
         {imagePresentChecker &&
         <View>
         <View style={{marginLeft:15}}>
-      <Text style={{fontFamily:'Poppins_400Regular', fontSize:15}}>Images of Ongoing Construction</Text>
+      <Text style={{fontFamily:'Montserrat_400Regular', fontSize:15}}>Images of Ongoing Construction</Text>
       </View>
 
         <ScrollView horizontal>
@@ -224,7 +181,7 @@ for(var i in stages_construction){
                      <Image source={{uri: imageUrl+singleImage}}
                         style={{width:200, height:150,resizeMode:'stretch'}}>
                     </Image>
-                <Text style={{fontFamily:'Poppins_400Regular', fontSize:10}}>{image.comment}</Text>
+                <Text style={{fontFamily:'Montserrat_400Regular', fontSize:10}}>{image.comment}</Text>
                     </View>
                 ))}
                
@@ -234,21 +191,21 @@ for(var i in stages_construction){
         </View>
     }
     {iscontractorContractPresent &&
-        <View style={{marginLeft:10}}>
-        <Text style={{fontFamily:'Poppins_400Regular', 
-        textAlign:'center', fontSize:15}}>
+        <View style={{marginLeft:10, marginTop:30}}>
+        <Text style={{fontFamily:'Montserrat_400Regular', 
+        textAlign:'center', fontSize:16, marginBottom:15}}>
             Contracts Handled By Contractor
             </Text>
             {contracts_handled_by_contractor.map((stage) =>(
-                <Text style={{fontSize:12, marginHorizontal:3, marginVertical:7, fontFamily:'Poppins_400Regular'}}>
-                <FontAwesome5 name="location-arrow" size={10} color="#07411D" />
+                <Text style={{fontSize:12, marginHorizontal:3, marginVertical:7, fontFamily:'Montserrat_400Regular'}}>
+                <FontAwesome5 name="location-arrow" size={10} color="#07411D" style={{marginRight:10}} />
                 {stage.name} ({stage.state})({stage.current_percentage}%)
                 </Text>
             ))}
       </View>
       }
       {!parametersAbsent &&
-      <View style={[styles.bottomCard, {marginLeft:20, marginTop:30}]}>
+      <View style={[styles.bottomCard, {marginTop:30}]}>
       <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}>    
             <Text style={styles.subText}>Project Name</Text>
             <Text style={[styles.bottomText, {fontSize:10, width:'65%'}]}>{singleContract.projectTitle}</Text>
@@ -285,23 +242,23 @@ for(var i in stages_construction){
         </View>
         <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}>    
             <Text style={styles.subText}>Expected Percentage Delivery</Text>
-            <Text style={styles.bottomText}>{supposedPercentage}%</Text>
+            <Text style={styles.bottomText}>{Math.round(NaNRemover(supposedPercentage))}%</Text>
         </View>
         <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}>    
         <Text style={styles.subText}>Current Percentage</Text>
-        <Text style={styles.bottomText}>{Math.round(singleContract.currentPercentage)}%</Text>
+        <Text style={styles.bottomText}>{Math.round(NaNRemover(singleContract.currentPercentage))}%</Text>
         </View>
           <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}>    
         <Text style={styles.subText}>Amount Certified To Date</Text>
-        <Text style={styles.bottomText}>{currency(singleContract.amountCertifiedToDate)}</Text>
+        <Text style={styles.bottomText}>{currency(NaNRemover(singleContract.amountCertifiedToDate))}</Text>
         </View>
         <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}> 
             <Text style={styles.subText}>Accumulated Daily Budget</Text>
-            <Text style={styles.bottomText}>{currency(Math.round(total_money_supposed_to_be_spent))}</Text>
+            <Text style={styles.bottomText}>{currency(Math.round(NaNRemover(total_money_supposed_to_be_spent)))}</Text>
         </View>
         <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:20}}> 
             <Text style={styles.subText}>Daily Contract Budget</Text>
-            <Text style={styles.bottomText}>{currency(Math.round(dailyBudget))}</Text>
+            <Text style={styles.bottomText}>{currency(Math.round(NaNRemover(dailyBudget)))}</Text>
         </View>
       </View>
 }
@@ -322,23 +279,21 @@ const styles = StyleSheet.create({
         width:'100%',
     },
     bottomText: {
-        fontFamily:'Poppins_400Regular',
-        fontWeight:'bold',
+        fontFamily:'Montserrat_400Regular',
         fontSize:10,
         color: "black",
         marginLeft:10,
         marginTop:10
     },  
     subText: {
-        fontFamily:'Poppins_400Regular',
-        fontWeight:'bold',
+        fontFamily:'Montserrat_500Medium',
         fontSize:11,
         color: "black",
-        marginLeft:10,
+        marginLeft:3,
         marginTop:12
     },  
     bottomCard: {
-        width:'90%',
+        width:'95%',
         backgroundColor:'white',
         height:210,
         marginLeft:'auto',
@@ -370,14 +325,14 @@ elevation: 8,
         marginTop:10, 
         textAlign:'center',
         color:'white',
-        fontFamily:'Poppins_400Regular', 
+        fontFamily:'Montserrat_400Regular', 
         fontSize:18
     },
     state: {
         marginTop:10, 
         textAlign:'center',
         color:'white',
-        fontFamily:'Poppins_400Regular', 
+        fontFamily:'Montserrat_400Regular', 
         fontSize:15,
         
     },
@@ -385,7 +340,7 @@ elevation: 8,
         marginTop:10, 
         textAlign:'center',
         color:'white',
-        fontFamily:'Poppins_400Regular', 
+        fontFamily:'Montserrat_400Regular', 
         fontSize:37,
     },
 

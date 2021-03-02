@@ -19,7 +19,7 @@ import {getAllSections,sendMsgToSection, sendMsgToTopic, viewAllMessages} from '
 import {Colors} from '../components/colors'
 import * as Animatable from 'react-native-animatable';
 import MsgCard from '../components/msgCards';
-
+import Spinner from 'react-native-loading-spinner-overlay';
 import {Toast} from 'native-base';
 
 
@@ -141,13 +141,7 @@ const showToastWithGravity = (msg) => {
 
 
   const firstName = state.user.user.firstName
-  if (isLoading) {
-    return (
-      <View style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator size="large" color="#07411D" />
-      </View>
-    )
-  }  
+  const loadSpinner = isLoading ? true : false;
   return (
 
     <View style={{flex:1}}>
@@ -189,35 +183,25 @@ const showToastWithGravity = (msg) => {
 </Animatable.View>
     }
      <View style={{backgroundColor:'green', flex: 2}}>
+     <HeaderWithBack navigation={props.navigation} color="white"/>
     <ImageBackground
         style={styles.image}
         source={require('../../assets/images/unnamed.jpg')}
     >
-    <View style={{marginTop:26, marginRight:10, alignItems:'flex-end'}}>
-      <TouchableOpacity onPress={()=>setUserClicked(!userClicked)}>
-      <FontAwesome5 name="user" size={20} color="white" />
-      </TouchableOpacity>
-    {userClicked &&
-      <View style={{borderRadius:7, backgroundColor:'white', position:'absolute', top:25, width:60, height:30, justifyContent:'center'}}>
-        <TouchableOpacity onPress={()=>logOut()}>
-          <Text style={{color:'black', fontFamily:'Poppins_400Regular', textAlign:'center'}}>Logout</Text>
-        </TouchableOpacity>       
-      </View>
-      }
-    </View>
+  
       <Text style={{
-        marginTop:20,
+        marginTop:50,
         color:'white',
-        fontWeight:'bold', 
+        fontFamily:'Montserrat_600SemiBold',
         fontSize:22,
         marginLeft:40}}>Hello! {firstName}</Text>
-        <Text style={{fontSize:15,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:15,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
        What Can I do Here?
         </Text>
-        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:12,marginTop:5, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
         Click/Press on the Section Card
         </Text>
-        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:12,marginTop:5, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
         Fill In the Message Box and submit
         </Text>
      
@@ -243,7 +227,14 @@ iconName="user-friends" title={section.name}/>
 
     </ScrollView>
     </View>
-      
+    <Spinner
+          //visibility of Overlay Loading Spinner
+          visible={loadSpinner}
+          //Text with the Spinner 
+          textContent="loading"
+          //Text style of the Spinner Text
+          textStyle={styles.spinnerTextStyle}
+        />
   </View>
   );
 };
@@ -253,6 +244,9 @@ iconName="user-friends" title={section.name}/>
 export default SendMsgToSection;
 
 const styles = StyleSheet.create({
+  spinnerTextStyle: {
+    color: '#FFF',
+  },
     cardParent: {
         marginVertical:10,
         height:170,

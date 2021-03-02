@@ -16,76 +16,38 @@ import {
 import AdvertiseButton from '../components/advertiseButton';
 import {datasheetkey} from '../api/constants';
 import GetLocation from 'react-native-get-location'
-import { BridgeTemplate } from '../datasheetTemplates/bridgeTemplate';
+import { equipment } from '../datasheetTemplates/otherTemplates';
 
 import UnderscoreFormatter from '../helpers/underscoreFormatter';
-import ZeroChecker from '../helpers/zeroChecker';
+import ZeroChecker from '../helpers/zeroCheck';
 
 import {Toast} from 'native-base';
 
 
-const DatasheetTemplate = (props) => {    
-    const { width, height } = Dimensions.get('window');
-    const [token, setToken] = useState("");
-    const [road, setRoad] = useState(BridgeTemplate);
-    const [housing, setHousing] = useState([])
-    const [national, setNational] = useState([]);
-    const [title, setTitle] = useState("");
+const Equipment = (props) => {    
+    const [road, setRoad] = useState(equipment);
+ 
+    const [title, setTitle] = useState("Equipment Used");
     const [location, setLocation] = useState({});
-    const [msg, showMsg] = useState(false)
-    const [valMsg, setValMsg] = useState("");
-    const [type, setType] = useState("");
+    const [type, setType] = useState("equipment");
     const [isLoading, setLoading] = useState(false)
 
     const [index, setIndex] = useState(0);
-    const [value, setValue] = useState(0)
+   
 
     useEffect(() => {   
-        let type = props.navigation.getParam('type', null)
       
-        setType(type)
-        GetLocation.getCurrentPosition({
-            enableHighAccuracy: true,
-            timeout: 15000,
-        })
-        .then(location => {
-            console.log("Location is Presseee",location);
-            setLocation(location)
-        })
-        .catch(error => {
-            const { code, message } = error;
-            console.warn("Error",code, message);
-        })
     }, []);
 
-    const handleQuantity = (index, value) => {
-      let dup_array = road.road==undefined?road:road.road
-      dup_array[index].qty = value.replace(/[^0-9]/g, '')
-       setRoad(prevState=>({
-           road:dup_array
-       }))
-    }
-
-    const handleAmount = (indy, valz) => {
-      setIndex(indy);
-      setValue(valz);
+   
+    const handleAmount = (indy, valz) => {    
       let dup_array = road.road==undefined?road:road.road
       dup_array[indy].amount = valz.replace(/[^0-9]/g, '')
        setRoad(prevState=>({
            road:dup_array
        }))
     }
-
-
-
-    const handleUnit = (index, value) => {
-      let dup_array = road.road==undefined?road:road.road
-      dup_array[index].unit = value
-       setRoad(prevState=>({
-           road:dup_array
-       }))
-    }
-    
+   
     
     const zerofy = () => {
       let dup_array = road.road==undefined?road:road.road
@@ -115,28 +77,22 @@ const DatasheetTemplate = (props) => {
 
 
     const submitDatasheet = () => {
-      if(location!=null){
-        setLoading(true)
-      var today = new Date();
+        var today = new Date();
       let dup_array = road.road==undefined?road:road.road
       let zeroChecker = ZeroChecker(dup_array,title);
-      console.log(zeroChecker, "llllllllll")
       if(zeroChecker.status === true){
         setLoading(false)
         showToastWithGravity(zeroChecker.msg)
       }
       else {
-        console.log(" it good")
         setLoading(true)
         const newDatasheetArray = []
         const dataSheet = {
-          latitude:location.latitude, 
-          longitude:location.longitude,
-          type:type,
-          date:today,
-          title:title,
-          components:road,
-          id:Math.floor(Math.random() * 899999 + 100000)
+            title:title,
+            date:today,
+          type:type,//will later be passed to a post route as a params
+          parameters:road,
+          id: Math.floor(Math.random() * 899999 + 100000)
         }
           // datasheetkey
           newDatasheetArray.push(dataSheet)
@@ -150,9 +106,8 @@ const DatasheetTemplate = (props) => {
                 showToastWithGravity("Datasheet Saved")
                   zerofy()
                   setLoading(false)
-                  props.navigation.navigate('UploadMenu');
+                  props.navigation.navigate('UploadRoadEconomy');
               }).catch((e) => {
-              console.warn(e.message)
               })    
             }
             else {
@@ -161,40 +116,23 @@ const DatasheetTemplate = (props) => {
                   showToastWithGravity("Datasheet Saved")
                   zerofy()
                   setLoading(false)
-                  props.navigation.navigate('UploadMenu');
+                  props.navigation.navigate('UploadRoadEconomy');
               }).catch((e) => {
-              console.warn(e.message)
               })    
             }
           })
       }
     }
-    else {
-      showToastWithGravity("Geolocation not Enabled")
-      setLoading(false)
-    }
-    }
 
     let allcomponents = road.road==undefined?road:road.road
-    console.log(allcomponents)
-
-
-
+  
 return (
   <>
   <HeaderWithBack navigation={props.navigation} />
   <ScrollView showsVerticalScrollIndicator={false} style={{marginTop:50, marginBottom:20}}>
  
     <Text style={styles.title2}>Enter Datasheet Details, The Title Field must Not be Empty</Text>
-    <View style={{justifyContent:'center', alignSelf:'center', width:'90%'}}>
-            
-            <TextInput
-              placeholder="Title of Datasheet"
-              textAlign={'center'}
-              style={{borderRadius:5, height: 45, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
-              onChangeText={text => setTitle(text)}
-              />
-      </View>
+ 
     {allcomponents.map((params, index) => {
       console.log(params, index)
       return (
@@ -202,35 +140,17 @@ return (
        
        <Text style={styles.title}>{ UnderscoreFormatter(params.name) }</Text>
       <View style={{flexDirection:'row', justifyContent:'space-around'}}>     
+         
+         
           <View style={{flexDirection:'column', width:'50%'}}>
-            
-            <TextInput
-              keyboardType="numeric"
-              placeholder="Amount"
-              textAlign={'center'}
-              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
-              onChangeText={text => handleAmount(index, text)}
-              value={params.amount}
-              />
-          </View>
-          <View style={{flexDirection:'column', width:'20%'}}>
-            <TextInput
-              keyboardType="numeric"
-              placeholder="Quantity"
-              textAlign={'center'}
-              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
-              onChangeText={text => handleQuantity(index, text)}
-              value={params.qty}
-              />
-          </View>
-          <View style={{flexDirection:'column', width:'20%'}}>
           
             <TextInput
-              placeholder="Unit"
-              textAlign={'center'}
-              style={{ borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
-              onChangeText={text => handleUnit(index, text)}
-              value={params.unit}
+                keyboardType="numeric"
+                placeholder="Amount"
+                textAlign={'center'}
+                style={{ borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
+                onChangeText={text => handleAmount(index, text)}
+                value={params.amount}
               />
           </View>
       </View>
@@ -255,7 +175,7 @@ return (
 
 
 
-export default DatasheetTemplate;
+export default Equipment;
 
 const styles = StyleSheet.create({
     container: {
@@ -273,7 +193,7 @@ const styles = StyleSheet.create({
       backgroundColor:'white', 
       width:'90%', 
       borderRadius:10,
-      height:140,
+      height:110,
       justifyContent:'center',
       shadowColor: "#000",
 shadowOffset: {

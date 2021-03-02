@@ -165,7 +165,7 @@ const showToastWithGravity = (msg) => {
   return (
 
     <>
-    <HeaderWithBack navigation={props.navigation} />
+   <HeaderWithBack navigation={props.navigation} color="white"/>
     {showMsg &&
       <Animatable.View duration={3000} animation="zoomInDown" style={{justifyContent:'center', borderRadius:10, position:'absolute', zIndex:1000, top:50, left:'10%', width:'80%', height:320, backgroundColor:'#07411D'}}>
            
@@ -212,34 +212,23 @@ const showToastWithGravity = (msg) => {
         style={styles.image}
         source={require('../../assets/images/unnamed.jpg')}
     >
-    <View style={{marginTop:26, marginRight:10, alignItems:'flex-end'}}>
-      <TouchableOpacity onPress={()=>setUserClicked(!userClicked)}>
-      <FontAwesome5 name="user" size={20} color="white" />
-      </TouchableOpacity>
-    {userClicked &&
-      <View style={{borderRadius:7, backgroundColor:'white', position:'absolute', top:25, width:60, height:30, justifyContent:'center'}}>
-        <TouchableOpacity onPress={()=>logOut()}>
-          <Text style={{color:'black', fontFamily:'Poppins_400Regular', textAlign:'center'}}>Logout</Text>
-        </TouchableOpacity>       
-      </View>
-      }
-    </View>
+   
       <Text style={{
-        marginTop:20,
+        marginTop:50,
         color:'white',
-        fontWeight:'bold', 
+        fontFamily:'Montserrat_600SemiBold',
         fontSize:22,
         marginLeft:40}}>Hello! {firstName}</Text>
-        <Text style={{fontSize:15,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:15,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
        What Can I do Here?
         </Text>
-        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:12,marginTop:5, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
         You can Send message to a single User
         </Text>
-        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:12,marginTop:5, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
         You can BroadCast message to all Users in a Section
         </Text>
-        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:12,marginTop:5, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
         You can Send message to all Users
         </Text>
         <ScrollView horizontal 

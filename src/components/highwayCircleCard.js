@@ -16,14 +16,14 @@ export default function HighwayCircleCard(props) {
     <Animatable.View animation="slideInRight" style={{width:100,  justifyContent:'center'}}>
     <TouchableOpacity  onPress={()=>props.navigation.navigate(props.link)}>
     <View style={[styles.circularCard,{backgroundColor:bgColor}]}>
-    <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{textAlign:'center',fontSize:9, fontFamily:'Poppins_400Regular', color:'white'}}>
+    <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{textAlign:'center',fontSize:9, fontFamily:'Montserrat_400Regular', color:'white'}}>
     <FontAwesome5 style={{alignSelf:'center', textAlign:'center'}} 
     name={props.iconName} size={21} color={iconColor}/>
     </Animatable.Text>
     </View>
     <View style={{width:'80%', marginLeft:'auto', marginRight:'auto'}}>
     <Animatable.Text animation="pulse" easing="ease-out" 
-    iterationCount="infinite" style={{textAlign:'center',fontSize:9, fontFamily:'Poppins_400Regular', color:'white',}}>
+    iterationCount="infinite" style={{textAlign:'center',fontSize:9, fontFamily:'Montserrat_400Regular', color:'white',}}>
    
    {props.title}
  </Animatable.Text>

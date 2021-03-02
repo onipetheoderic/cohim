@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:18
     },

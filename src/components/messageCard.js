@@ -59,23 +59,23 @@ console.log("this is the id", props.id)
 
 const styles = StyleSheet.create({
     title: {
-        fontFamily: 'Poppins_400Regular',
+        fontFamily: 'Montserrat_400Regular',
         marginTop:10,
         fontWeight:'bold',
         color:'#535552'
     },
     description: {
-        fontFamily: 'Poppins_400Regular',
+        fontFamily: 'Montserrat_400Regular',
         
         
         color:'#535552'
     },
 
     replied_text_style: {
-        fontFamily:'Poppins_400Regular',
+        fontFamily:'Montserrat_400Regular',
     },
     fullname: {
-        fontFamily:'Poppins_400Regular',
+        fontFamily:'Montserrat_400Regular',
         fontWeight:'bold',
     },
     red_dot: {
@@ -121,7 +121,7 @@ elevation: 22,
     },
     
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:25
     },

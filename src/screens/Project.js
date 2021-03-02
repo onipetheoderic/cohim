@@ -230,12 +230,12 @@ const styles = StyleSheet.create({
     },
     
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:28
     },
     contractTitle: {
-      fontFamily: "Poppins_400Regular",
+      fontFamily: "Montserrat_400Regular",
       color: "#3e3e3e",
       fontSize:17,
       marginLeft:10
@@ -251,14 +251,14 @@ const styles = StyleSheet.create({
     marginTop:25, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:18
 },
 state: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -266,7 +266,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

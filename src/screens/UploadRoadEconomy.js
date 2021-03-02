@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import HeaderWithBack from '../components/headerWithBack';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Fontisto from 'react-native-vector-icons/Fontisto'
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Carousel from '../components/carousel'
@@ -20,7 +19,7 @@ import HighwayCircleCard from '../components/highwayCircleCard';
 import GetLocation from 'react-native-get-location'
 
 
-const UploadMenu = (props) => {    
+const UploadRoadEconomy = (props) => {    
     const { width, height } = Dimensions.get('window');
     const [token, setToken] = useState("");
     const [bridge, setBridge] = useState([]);
@@ -31,22 +30,7 @@ const UploadMenu = (props) => {
    
     useEffect(() => {   
 
-
-        GetLocation.getCurrentPosition({
-            enableHighAccuracy: true,
-            timeout: 15000,
-        })
-        .then(location => {
-            console.log("Location is Presseee",location);
-        })
-        .catch(error => {
-            const { code, message } = error;
-            console.warn("Error",code, message);
-        })
     }, []);
-/*
- <HighwayCard navigation={props.navigation} iconName="road" title="Ongoing Road Project" link="ongoing_road" />
-*/ 
 
 return (
   <View style={{flex:1}}> 
@@ -79,57 +63,39 @@ return (
       <ScrollView style={{marginTop:20}}>    
         <View style={{flexDirection:'row', flexWrap:'wrap', justifyContent:'space-around'}}>
           
-          <View style={[styles.eachCard]}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate('DatasheetTemplate', {
-              type:"road"
-            })}>
-              <FontAwesome5 style={{alignSelf:'center', textAlign:'center'}} 
-              name="road" size={41} color="green"/>
-              <Text style={styles.state}>Road Contract Beme</Text>  
-            </TouchableOpacity>
-          </View>
+          
 
-          <View style={[styles.eachCard]}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate('BridgeDatasheet', {
-              type:"bridge"
-            })}>
-                <FontAwesome5 style={{alignSelf:'center', textAlign:'center'}} 
-                    name="water" size={41} color="green"/>
-                <Text style={styles.state}>Bridge Contract Beme</Text>   
-            </TouchableOpacity>                     
-          </View>
         
-       
         
           <View style={[styles.eachCard]}>
-          <TouchableOpacity onPress={()=>props.navigation.navigate('HousingMenu')}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('Materials')}>
               <FontAwesome5 style={{alignSelf:'center', textAlign:'center'}} 
               name="home" size={41} color="green"/>
-              <Text style={styles.state}>Housing Beme</Text>
+              <Text style={styles.state}>Material</Text>
           </TouchableOpacity>
           </View>
 
           <View style={[styles.eachCard]}>
-          <TouchableOpacity onPress={()=>props.navigation.navigate('UploadRoadEconomy')}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('Equipment')}>
               <FontAwesome5 style={{alignSelf:'center', textAlign:'center'}} 
               name="money-bill-alt" size={41} color="green"/>
-              <Text style={styles.state}>Upload Economy of Road</Text>
+              <Text style={styles.state}>Equipment</Text>
           </TouchableOpacity>
           </View>
 
           <View style={[styles.eachCard]}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate('UploadRoadFurniture')}>
+            <TouchableOpacity onPress={()=>props.navigation.navigate('DirectJob')}>
                 <FontAwesome5 style={{alignSelf:'center', textAlign:'center'}} 
                 name="cash-register" size={41} color="green"/>
-                <Text style={styles.state}>Upload Road Furniture Audit</Text>
+                <Text style={styles.state}>Direct Jobs Created</Text>
             </TouchableOpacity>
           </View>
 
           <View style={[styles.eachCard]}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate('UploadWeatherCondition')}>
+            <TouchableOpacity onPress={()=>props.navigation.navigate('IndirectJob')}>
                 <FontAwesome5 style={{alignSelf:'center', textAlign:'center'}} 
                 name="cloud-moon-rain" size={41} color="green"/>
-                <Text style={styles.state}>Upload Weather condition</Text>
+                <Text style={styles.state}>Indirect Jobs Created</Text>
             </TouchableOpacity>
           </View>
 
@@ -147,7 +113,7 @@ return (
 
 
 
-export default UploadMenu;
+export default UploadRoadEconomy;
 
 const styles = StyleSheet.create({
   swipeoutSide: {
@@ -230,7 +196,7 @@ const styles = StyleSheet.create({
     backgroundColor:'white', 
     width:'40%', 
     borderRadius:10,
-    height:100,
+    height:140,
     justifyContent:'center',
     shadowColor: "#000",
 shadowOffset: {

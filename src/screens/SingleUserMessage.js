@@ -3,7 +3,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import {View, Alert, TextInput, ImageBackground, ActivityIndicator,
   BackHandler, Text,ScrollView, TouchableOpacity, StatusBar, Dimensions, Image, StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import HeaderWithBack from '../components/headerWithBack';
 import {Colors} from '../components/colors'
 import {doSearchUsers, submitMsg} from '../api/apiService';
 import { CounterContext } from "../../store";
@@ -167,39 +167,29 @@ if (isLoading) {
 
   return (
     <View style={{flex:1}}>
+      <HeaderWithBack navigation={props.navigation} color="white"/>
     <View style={{backgroundColor:'green', flex: 2}}>
     <ImageBackground
         style={styles.image}
         source={require('../../assets/images/unnamed.jpg')}
     >
-    <View style={{marginTop:26, marginRight:10, alignItems:'flex-end'}}>
-      <TouchableOpacity onPress={()=>setUserClicked(!userClicked)}>
-      <FontAwesome5 name="user" size={20} color="white" />
-      </TouchableOpacity>
-    {userClicked &&
-      <View style={{borderRadius:7, backgroundColor:'white', position:'absolute', top:25, width:60, height:30, justifyContent:'center'}}>
-        <TouchableOpacity onPress={()=>logOut()}>
-          <Text style={{color:'black', fontFamily:'Poppins_400Regular', textAlign:'center'}}>Logout</Text>
-        </TouchableOpacity>       
-      </View>
-      }
-    </View>
+   
       <Text style={{
-        marginTop:20,
+        marginTop:50,
         color:'white',
-        fontWeight:'bold', 
+        fontFamily:'Montserrat_600SemiBold',
         fontSize:22,
         marginLeft:40}}>Hello! {firstName}</Text>
-        <Text style={{fontSize:15,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:15,marginTop:10, marginLeft:40, color:'white', fontFamily:'Montserrat_400Regular'}}>
        What Can I do Here?
         </Text>
-        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:12,marginTop:5, marginLeft:40, color:'white', fontFamily:'Montserrat_400Regular'}}>
         You can Send message to a single User
         </Text>
-        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
-        Just type in the name of the user
+        <Text style={{fontSize:12,marginTop:5, marginLeft:40, color:'white', fontFamily:'Montserrat_400Regular'}}>
+       Just type in the name of the user
         </Text>
-     
+        
         <ScrollView horizontal 
         showsHorizontalScrollIndicator={false} style={{flexDirection:'row', marginTop:-40}}>
       
@@ -220,7 +210,7 @@ if (isLoading) {
                 placeholder="Search Users"
                 value={searchValue}
                 underlineColorAndroid="transparent"
-                style={{marginLeft:25, height:50, marginTop:3,fontFamily:'Poppins_400Regular'}}
+                style={{marginLeft:25, height:50, marginTop:3,fontFamily:'Montserrat_400Regular'}}
                 onChangeText={(value) => {
                     setQuery(value)                   
                 }}
@@ -234,7 +224,7 @@ if (isLoading) {
               justifyContent:'center',
               marginLeft:'auto', marginRight:'auto',width:'80%',
             borderBottomColor:'rgb(202, 207, 210)'}}>
-              <Text style={{textAlign:'center',fontSize:15, fontFamily:'Poppins_400Regular'}}>
+              <Text style={{textAlign:'center',fontSize:10, fontFamily:'Montserrat_400Regular'}}>
                   {data.firstName}, {data.lastName}, ({underscoreFormatter(data.section)})</Text>
             </View>
         </TouchableOpacity>
@@ -249,10 +239,10 @@ if (isLoading) {
       }
       {isUserSelected &&
     <View style={{marginLeft:20}}>
-        <Text style={[{marginTop:20, fontWeight:'bold', fontFamily:'Poppins_400Regular', fontSize:15, color:'black'}]}>
+        <Text style={[{marginTop:20, fontWeight:'bold', fontFamily:'Montserrat_400Regular', fontSize:15, color:'black'}]}>
             Enter Subject and content of message
             </Text>
-        <Text style={[{marginTop:20, fontWeight:'bold', fontFamily:'Poppins_400Regular', color:'black'}]}>Subject</Text>
+        <Text style={[{marginTop:20, fontWeight:'bold', fontFamily:'Montserrat_400Regular', color:'black'}]}>Subject</Text>
             <View style={{margin:10}}>
                 <TextInput 
                 style={{color:'black'}}
@@ -263,7 +253,7 @@ if (isLoading) {
                 />
                 
             </View>
-    <Text style={[{marginTop:20,fontWeight:'bold', fontFamily:'Poppins_400Regular', color:'black'}]}>Message Content</Text>
+    <Text style={[{marginTop:20,fontWeight:'bold', fontFamily:'Montserrat_400Regular', color:'black'}]}>Message Content</Text>
         <View style={{margin:10}}>
             <TextInput 
             style={{color:'black'}}
@@ -309,14 +299,14 @@ const styles = StyleSheet.create({
         marginTop:10, 
         textAlign:'center',
         color:'white',
-        fontFamily:'Poppins_400Regular', 
+        fontFamily:'Montserrat_400Regular', 
         fontSize:18
     },
     state: {
         marginTop:10, 
         textAlign:'center',
         color:'white',
-        fontFamily:'Poppins_400Regular', 
+        fontFamily:'Montserrat_400Regular', 
         fontSize:15,
         
     },
@@ -324,7 +314,7 @@ const styles = StyleSheet.create({
         marginTop:10, 
         textAlign:'center',
         color:'white',
-        fontFamily:'Poppins_400Regular', 
+        fontFamily:'Montserrat_400Regular', 
         fontSize:37,
     },
 

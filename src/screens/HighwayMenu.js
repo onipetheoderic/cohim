@@ -106,6 +106,8 @@ const roadExist = road.length==0?false:true;
 const bridgeExist = bridge.length==0?false:true;
 const housingExist = housing.length==0?false:true;
 
+const zeroDatasheet = !roadExist && !bridgeExist && !housingExist ? true : false
+
   return (
     <View style={{flex:1}}> 
 
@@ -114,43 +116,67 @@ const housingExist = housing.length==0?false:true;
         style={styles.image}
         source={require('../../assets/images/unnamed.jpg')}
     >
-    <View style={{marginTop:30, marginRight:10, alignItems:'flex-end'}}>
-      <TouchableOpacity onPress={()=>setUserClicked(!userClicked)}>
-      <FontAwesome5 name="user" size={20} color="white" />
-      </TouchableOpacity>
-    {userClicked &&
-      <View style={{borderRadius:7, backgroundColor:'white', position:'absolute', top:25, width:60, height:30, justifyContent:'center'}}>
-        <TouchableOpacity onPress={()=>logOut()}>
-          <Text style={{color:'black', fontFamily:'Poppins_400Regular', textAlign:'center'}}>Logout</Text>
-        </TouchableOpacity>       
-      </View>
-      }
-    </View>
-      <Text style={{
-        marginTop:20,
-        color:'white',
-        fontWeight:'bold', 
-        fontSize:22,
-        marginLeft:40}}>Hello! {user.firstName}</Text>
-        <Text style={{fontSize:12,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+
+      <View style={{width:'88%', alignSelf:'center', }}>
+        <Text style={{
+          marginTop:40,
+          color:'white',
+          fontFamily:'Montserrat_600SemiBold',
+          fontSize:22,
+          }}>Hello! {user.firstName}</Text>
+        
+        
+        <Text style={{fontSize:12,marginTop:20, color:'white', fontFamily:'Montserrat_400Regular'}}>
         Welcome to your Dashboard. You can perform Administrative Tasks from here. Click the Menu below
         </Text>
+        
+        
+        <View style={{marginTop:20, height:100}}>
         <ScrollView horizontal 
-        showsHorizontalScrollIndicator={false} style={{flexDirection:'row', marginTop:-40}}>
+        showsHorizontalScrollIndicator={false} style={{flexDirection:'row'}}>
          <HighwayCircleCard iconName="road" navigation={props.navigation} link="AllSavedDatasheets" title="Saved Inspection Datasheets"/>
          <HighwayCircleCard iconName="envelope" title="View/Send Messages" navigation={props.navigation} link="Messages"/>
          <HighwayCircleCard iconName="water" title="Create A New Datasheet" navigation={props.navigation} link="UploadMenu"/>
-         <HighwayCircleCard iconName="user" title="Verify HDMI Users" navigation={props.navigation} link="HdmiVerification"/>
-     
 
+     
+          <View style={{alignItems:'center', justifyContent:'center'}}>
+            <TouchableOpacity onPress={()=>setUserClicked(!userClicked)}>
+                <FontAwesome5 name="chevron-down" size={30} color="white" />
+            </TouchableOpacity>
+            {userClicked &&
+            <TouchableOpacity onPress={()=>logOut()} style={{
+            borderRadius:7,
+            backgroundColor:'white',
+            top:15, width:60, height:30, left:0,
+            justifyContent:'center'}}>
+            <Text style={{color:'black', fontFamily:'Montserrat_400Regular', textAlign:'center'}}>Logout</Text>
+                
+            </TouchableOpacity>            
+            }
+          </View> 
         </ScrollView>
+        </View>
+      
+        
+
+      </View>
+
+   
+      
+        
+       
     </ImageBackground>
 </View> 
 <View style={{flex:2,backgroundColor:'white',
     borderTopRightRadius:40, 
-    marginTop:-30,
+    marginTop:-40,
     borderTopLeftRadius:40,}}>
+{zeroDatasheet &&
+<View style={{alignSelf:'center', marginTop:30, }}>
+  <Text style={{ fontFamily:'Montserrat_600SemiBold',}}>No Datasheet has been assigned to you</Text>
+</View>
 
+}
 <ScrollView style={{
     
   marginTop:30
@@ -196,7 +222,7 @@ const housingExist = housing.length==0?false:true;
             
             elevation: 19,}}
         >
-            <Text style={{ fontSize: 18, fontFamily:'Poppins_400Regular' }}>{Math.round(contract.current_percentage)}%</Text>
+            <Text style={{ fontSize: 18, fontFamily:'Montserrat_400Regular' }}>{Math.round(contract.current_percentage)}%</Text>
         </ProgressCircle>
         </View>
         <Text style={styles.state}>{Currency(contract.contract_sum)}</Text>
@@ -216,11 +242,7 @@ const housingExist = housing.length==0?false:true;
       <Text style={styles.contractTitle}>Bridge Contract Your are Assigned To</Text>
 }
 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-    
-    
-
-
-    {bridge.map((contract) => (
+        {bridge.map((contract) => (
         <TouchableOpacity
         key={contract.id}
         onPress={() => props.navigation.navigate('SelectDatasheet', {
@@ -251,7 +273,7 @@ const housingExist = housing.length==0?false:true;
       
       elevation: 19,}}
   >
-      <Text style={{ fontSize: 18, fontFamily:'Poppins_400Regular' }}>{Math.round(contract.current_percentage)}%</Text>
+      <Text style={{ fontSize: 18, fontFamily:'Montserrat_400Regular' }}>{Math.round(contract.current_percentage)}%</Text>
   </ProgressCircle>
   </View>
   <Text style={styles.state}>{Currency(contract.contract_sum)}</Text>
@@ -259,9 +281,6 @@ const housingExist = housing.length==0?false:true;
   <Text style={styles.title}>{contract.state}</Text>
       </View>
       </TouchableOpacity>
-
-      
-    
     ))}
 </ScrollView>
       </ScrollView> 
@@ -301,7 +320,7 @@ const housingExist = housing.length==0?false:true;
             
             elevation: 19,}}
         >
-            <Text style={{ fontSize: 18, fontFamily:'Poppins_400Regular' }}>{Math.round(contract.current_percentage)}%</Text>
+            <Text style={{ fontSize: 18, fontFamily:'Montserrat_400Regular' }}>{Math.round(contract.current_percentage)}%</Text>
         </ProgressCircle>
         </View>
         <Text style={styles.state}>{Currency(contract.contract_sum)}</Text>
@@ -352,12 +371,12 @@ const styles = StyleSheet.create({
     
     },
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:28
     },
     contractTitle: {
-      fontFamily: "Poppins_400Regular",
+      fontFamily: "Montserrat_400Regular",
       color: "#3e3e3e",
       fontSize:14,
       marginTop:10,
@@ -387,7 +406,7 @@ elevation: 19,
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:10,
     
 },
@@ -395,7 +414,7 @@ state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:11,
     
 },
@@ -403,7 +422,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

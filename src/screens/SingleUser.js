@@ -15,6 +15,7 @@ import {engineerProfileDetails, showHighwaySingleState, getUserDetail, doSearchC
 import { CounterContext } from "../../store";
 import ContractCard from '../components/contractCard';
 import Accordion from '../components/accordion';
+import Spinner from 'react-native-loading-spinner-overlay';
 import HeaderWithBack from '../components/headerWithBack';
 import {Toast} from 'native-base';
 const screenWidth = Dimensions.get("window").width;
@@ -146,37 +147,35 @@ const arrayfiedUserSummary = [
     {question: "Phone Number", answer: phoneNumber},
     {question: "Section", answer: section}
 ]
+const loadSpinner = isLoading ? true : false;
 
-if (isLoading) {
-  return (
-    <View style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <ActivityIndicator size="large" color="#07411D" />
-    </View>
-  )
-}  
   return (
 <View style={{flex:1}}>
+
 <View style={{backgroundColor:'green', flex: 2, borderBottomWidth:4, borderBottomColor:'green'}}>
+  
     <ImageBackground
         style={styles.image}
         source={require('../../assets/images/avatarbg4.jpg')}
-    >
-    
-       
+    > 
+   
         <ScrollView horizontal 
-        showsHorizontalScrollIndicator={false} style={{flexDirection:'row', marginTop:-40}}>
-           
-
+        showsHorizontalScrollIndicator={false} 
+        style={{flexDirection:'row', marginTop:-40}}>
         </ScrollView>
     </ImageBackground>
+   
     </View>
+
+    {!loadSpinner &&
     <View style={{flex:5}}>
-    <Image source={require('../../assets/images/avatar.png')} style={styles.avatar}/>
+    
+      <Image source={require('../../assets/images/avatar.png')} style={styles.avatar}/>
         <ScrollView>
-            <Text style={{fontSize:16,alignSelf:'center',color:'black', fontFamily:'Poppins_400Regular'}}>
+            <Text style={{fontSize:16,alignSelf:'center',color:'black', fontFamily:'Montserrat_400Regular'}}>
                {user_summary.firstName}
                 </Text>
-            <Text style={{fontSize:13,alignSelf:'center',color:'#758177', fontFamily:'Poppins_400Regular'}}>
+            <Text style={{fontSize:13,alignSelf:'center',color:'#758177', fontFamily:'Montserrat_400Regular'}}>
                 {user_summary.section} Sector Nigeria
             </Text>
             <Accordion 
@@ -191,7 +190,7 @@ if (isLoading) {
             description="Quick Summary of the Users Contracts Activities"
             />
              <Text style={{fontSize:15, fontWeight:'500', alignSelf:'center',
-             color:'#758177', marginBottom:10,marginTop:20, fontFamily:'Poppins_400Regular'}}>
+             color:'#758177', marginBottom:10,marginTop:20, fontFamily:'Montserrat_400Regular'}}>
                 Contracts Assigned to {user_summary.firstName}
             </Text>
        
@@ -210,10 +209,18 @@ if (isLoading) {
                     monthly_operational_cost={state.monthly_operational_cost}
                  />
             ))}
-    </ScrollView>
+      </ScrollView>
 
     </View>
-
+}
+    <Spinner
+          //visibility of Overlay Loading Spinner
+          visible={loadSpinner}
+          //Text with the Spinner 
+          textContent="loading"
+          //Text style of the Spinner Text
+          textStyle={styles.spinnerTextStyle}
+        />
 </View>
   );
 };
@@ -265,7 +272,7 @@ image: {
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -273,7 +280,7 @@ state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -281,7 +288,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

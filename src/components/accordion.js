@@ -16,8 +16,8 @@ export default function Accordion(props) {
       <View style={styles.eachCard}>
          
           <View style={{marginLeft:20}}>
-            <Text style={{fontFamily:'Poppins_400Regular'}}>{props.title}</Text>
-            <Text style={{color:'#758177', fontFamily:'Poppins_400Regular', fontSize:11}}>
+            <Text style={{fontFamily:'Montserrat_400Regular'}}>{props.title}</Text>
+            <Text style={{color:'#758177', fontFamily:'Montserrat_400Regular', fontSize:11}}>
                 {props.description}
             </Text>
           </View>
@@ -39,7 +39,7 @@ export default function Accordion(props) {
                     size={5} color="black" style={{alignSelf:'center', marginRight:5}}/>
                     
                 <Text style={{color:'#758177', 
-                fontFamily:'Poppins_400Regular',                
+                fontFamily:'Montserrat_400Regular',                
                 fontSize:11}}>
                 {question.question}: {question.answer}
                 </Text>

@@ -16,21 +16,21 @@ export default function UserCard(props) {
        <View style={styles.eachCard}>
         <View style={{width:'77%', marginLeft:20, }}>
         <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10,
-         fontSize:15, fontFamily:'Poppins_400Regular', color:'#03260A'}}>
+         fontSize:15, fontFamily:'Montserrat_400Regular', color:'#03260A'}}>
             {props.name}
         </Text>
         <Text style={{textAlign:'center', fontWeight:'500', marginBottom:10, 
-        fontSize:14, fontFamily:'Poppins_400Regular', color:'#758578'}}>
+        fontSize:14, fontFamily:'Montserrat_400Regular', color:'#758578'}}>
             {props.phoneNumber}
         </Text>
         <Text style={{textAlign:'center', fontSize:13, 
-        fontFamily:'Poppins_400Regular', color:'#03260A'}}>
+        fontFamily:'Montserrat_400Regular', color:'#03260A'}}>
             {props.title} {props.type}
         </Text>
         </View>
        
        <LinearGradient style={styles.circle} colors={['#33FC5E', '#0A4B12']}>
-    <Text style={{textAlign:'center', fontSize:35, fontFamily:'Poppins_400Regular', color:'white'}}>
+    <Text style={{textAlign:'center', fontSize:35, fontFamily:'Montserrat_400Regular', color:'white'}}>
             {props.count}
         </Text>
         </LinearGradient>
@@ -109,7 +109,7 @@ image: {
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -117,7 +117,7 @@ state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -125,7 +125,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

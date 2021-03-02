@@ -85,12 +85,12 @@ const SplashScreen = (props) => {
         Welcome to Cohims
         </Animatable.Text>
         <View style={{flexDirection:'row', justifyContent:'center'}}>
-            <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{textAlign:'center', marginLeft:4,fontSize:10, fontFamily:'Poppins_400Regular', fontWeight:'bold'}}>
+            <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{textAlign:'center', marginLeft:4,fontSize:10, fontFamily:'Montserrat_400Regular', fontWeight:'bold'}}>
                Contract and Highway Mgt System
             </Animatable.Text>
            
             </View>
-            <Animatable.Text delay={2000} duration={2000} animation="bounceInUp" style={{textAlign:'center',fontSize:10, fontFamily:'Poppins_400Regular'}}>
+            <Animatable.Text delay={2000} duration={2000} animation="bounceInUp" style={{textAlign:'center',fontSize:10, fontFamily:'Montserrat_400Regular'}}>
                 Ministry of Works Nigeria
             </Animatable.Text>            
         </View>

@@ -13,7 +13,7 @@ export default function HighwayNav(props) {
             <View style={{justifyContent:'center'}}>
                 <FontAwesome5 name={props.iconName} size={50} color="#cccccc" style={{marginBottom:15, marginTop:15,textAlign:'center'}} />
             </View>
-            <Text style={{marginHorizontal:10, color:'white', fontSize:15, fontFamily:'Poppins_400Regular', textAlign:'center'}}>
+            <Text style={{marginHorizontal:10, color:'white', fontSize:15, fontFamily:'Montserrat_400Regular', textAlign:'center'}}>
                 {props.title}
             </Text>
         </TouchableOpacity>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:25
     },

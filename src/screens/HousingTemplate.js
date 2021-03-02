@@ -185,7 +185,7 @@ return (
           <View style={{flexDirection:'column', width:'30%'}}>
           <Picker
                 selectedValue={params.done}
-                style={{fontSize:10, height: 50, width: 120, padding:0, color:'black'}}                
+                style={{fontSize:9, height: 50, width: 120, padding:0, color:'black'}}                
                 onValueChange={(itemValue, itemIndex) => { setSelectedDone(itemValue, index)}}>
                   <Picker.Item label='Done' value="done" />
                   <Picker.Item label='Not Done' value="not done" />
@@ -253,7 +253,7 @@ elevation: 19,
     textAlign:'center',
     color:'#095A1F',
     fontFamily:'Poppins_400Regular', 
-    fontSize:15,
+    fontSize:12,
     
 },
 titleBold: {
@@ -262,14 +262,14 @@ titleBold: {
     color:'#095A1F',
     fontFamily:'Poppins_400Regular',
     fontWeight:'bold',
-    fontSize:15,
+    fontSize:13,
 },
 state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
     fontFamily:'Poppins_400Regular', 
-    fontSize:13,
+    fontSize:12,
     
 },
 currentPercentage: {

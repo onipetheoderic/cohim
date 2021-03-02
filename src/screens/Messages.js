@@ -1,24 +1,19 @@
 
 import React, {useContext, useEffect, useState} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
+  TouchableOpacity,
+  Text,
   Picker,
   RefreshControl,
   TextInput,
-  Platform,
-  PickerIOS,
   FlatList,
   AsyncStorage,
-  ActivityIndicator,
-  Text,
-  Dimensions,
-  
+  Dimensions,  
   PixelRatio,
 } from 'react-native';
-import SingleMessageHeader from '../components/singleMessageHeader';
 import { CounterContext } from "../../store";
 import MessageGround from '../components/messageGround';
 import AdvertiseButton from '../components/advertiseButton';
@@ -28,6 +23,8 @@ import {Colors} from '../components/colors'
 import * as Animatable from 'react-native-animatable';
 import {Toast} from 'native-base';
 import HeaderWithBack from '../components/headerWithBack';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 const HighwayMenu = (props) => {    
     const { width, height } = Dimensions.get('window');
@@ -46,6 +43,7 @@ const HighwayMenu = (props) => {
 
    //submitMsg
     const showMsgBox = () => {
+      console.log("clicked")
         changeShowMsg(true)
     }
 //userToken
@@ -108,11 +106,7 @@ const handleInfiniteScroll = () => {
       })
     }
 }
-/*
- message.recieverId = req.body.reciever_id
-        message.subject = req.body.subject
-        message.message = req.body.message
-*/ 
+
 const submitMessage = () =>{
     const {state, dispatch } = globalState;
    
@@ -158,15 +152,7 @@ const showToastWithGravity = (msg) => {
       duration: 2000
     })
   };
-
-  if (isLoading) {
-    return (
-      <View style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator size="large" color="#07411D" />
-      </View>
-    )
-  }  
-
+  const loadSpinner = isLoading ? true : false;
   return (
 
     <>
@@ -174,7 +160,7 @@ const showToastWithGravity = (msg) => {
       <Animatable.View duration={3000} animation="zoomInDown" style={{justifyContent:'center', borderRadius:10, position:'absolute', zIndex:1000, top:50, left:'10%', width:'80%', height:320, backgroundColor:'#07411D'}}>
            
       <ScrollView>
-      <Text style={[{marginTop:20, marginLeft:10, fontFamily:'Poppins_400Regular', color:'white'}]}>Subject</Text>
+      <Text style={[{marginTop:20, marginLeft:10, fontFamily:'Montserrat_400Regular', color:'white'}]}>Subject</Text>
                     <View style={{margin:10}}>
                         <TextInput 
                         style={{color:'white'}}
@@ -185,7 +171,7 @@ const showToastWithGravity = (msg) => {
                         />
                         
                     </View>
-      <Text style={[{marginTop:20, marginLeft:10, fontFamily:'Poppins_400Regular', color:'white'}]}>Message Content</Text>
+      <Text style={[{marginTop:20, marginLeft:10, fontFamily:'Montserrat_400Regular', color:'white'}]}>Message Content</Text>
                     <View style={{margin:10}}>
                         <TextInput 
                         style={{color:'white'}}
@@ -199,7 +185,7 @@ const showToastWithGravity = (msg) => {
                         />
                         
                     </View>
-                    <Text style={[{marginTop:20, marginLeft:10, textAlign:'left', color:'white',fontFamily:'Poppins_400Regular'}]}>Select Recipient</Text>
+                    <Text style={[{marginTop:20, marginLeft:10, textAlign:'left', color:'white',fontFamily:'Montserrat_400Regular'}]}>Select Recipient</Text>
                     <View>
                     <Picker
                        selectedValue={selectedUser}
@@ -231,7 +217,12 @@ const showToastWithGravity = (msg) => {
     }
       
        <HeaderWithBack navigation={props.navigation} color="black"/>
-<MessageGround buttonOnpress={()=>showMsgBox()} home={false} navigation={props.navigation} title="Messages" height={height} width={width}>
+<MessageGround home={false} navigation={props.navigation} title="Messages" height={height} width={width}>
+<TouchableOpacity onPress={()=>showMsgBox()} 
+style={{backgroundColor:'green', alignItems:'center', height:50, justifyContent:'center', width:'60%'}}>
+  <Text style={{fontFamily:'Montserrat_400Regular', fontSize:20}}>New Message</Text>
+</TouchableOpacity>
+
 <FlatList
                 data={msgs}
                 keyExtractor={(item, index) => 'key' + index}
@@ -264,7 +255,15 @@ const showToastWithGravity = (msg) => {
 
 
 <View style={{marginBottom:60}}></View>
-</MessageGround>
+</MessageGround>  
+<Spinner
+  //visibility of Overlay Loading Spinner
+  visible={loadSpinner}
+  //Text with the Spinner 
+  textContent="loading"
+  //Text style of the Spinner Text
+  textStyle={styles.spinnerTextStyle}
+/>
     
       
   </>
@@ -285,12 +284,12 @@ const styles = StyleSheet.create({
     },
     
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:28
     },
     contractTitle: {
-      fontFamily: "Poppins_400Regular",
+      fontFamily: "Montserrat_400Regular",
       color: "#3e3e3e",
       fontSize:17,
       marginLeft:10
@@ -306,14 +305,14 @@ const styles = StyleSheet.create({
     marginTop:25, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:18
 },
 state: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -321,7 +320,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

@@ -16,24 +16,21 @@ import {datasheetkey} from '../api/constants';
 import HeaderWithBack from '../components/headerWithBack';
 import {Toast} from 'native-base';
 import UnderscoreFormatter from '../helpers/underscoreFormatter';
-const DatasheetTemplate = (props) => {    
+
+
+const DatasheetEdit = (props) => {    
     const { width, height } = Dimensions.get('window');
     const [token, setToken] = useState("");
     const [road, setRoad] = useState({});
-    const [housing, setHousing] = useState([])
-    const [national, setNational] = useState([]);
+   
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState({});
-    const [msg, showMsg] = useState(false)
-    const [valMsg, setValMsg] = useState("");
     const [type, setType] = useState("");
     const [storage_id, setStorageId] = useState(0)
     const [isLoading, setLoading] = useState(false)
 
     const [index, setIndex] = useState(0);
     const [value, setValue] = useState(0);
-    const [latitude, setLatitude] = useState("");
-    const [longitude, setLongitude] = useState("");
 
     useEffect(() => {   
         let type = props.navigation.getParam('type', null)
@@ -191,7 +188,7 @@ return (
               keyboardType="numeric"
               placeholder="Amount"
               textAlign={'center'}
-              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Poppins_400Regular', borderColor: 'gray', borderWidth: 1 }}
+              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
               onChangeText={text => handleAmount(index, text)}
               value={params.amount}
               />
@@ -201,7 +198,7 @@ return (
               keyboardType="numeric"
               placeholder="Quantity"
               textAlign={'center'}
-              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Poppins_400Regular', borderColor: 'gray', borderWidth: 1 }}
+              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
               onChangeText={text => handleQuantity(index, text)}
               value={params.qty}
               />
@@ -211,7 +208,7 @@ return (
             <TextInput
               placeholder="Unit"
               textAlign={'center'}
-              style={{ borderRadius:5, height: 40, width:'100%', fontFamily:'Poppins_400Regular', borderColor: 'gray', borderWidth: 1 }}
+              style={{ borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
               onChangeText={text => handleUnit(index, text)}
               value={params.unit}
               />
@@ -240,7 +237,7 @@ return (
 
 
 
-export default DatasheetTemplate;
+export default DatasheetEdit;
 
 const styles = StyleSheet.create({
     container: {
@@ -275,7 +272,7 @@ elevation: 19,
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -283,7 +280,7 @@ state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -291,7 +288,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

@@ -84,7 +84,7 @@ function underscoreFormatter(str){
 <Text style={{marginBottom:20, textAlign:'center', fontSize:17, marginVertical:10}}>{length}km</Text>
 
         <View style={{flexDirection:'row', marginLeft:20}}>
-            <Text style={{marginTop:6, fontFamily:'Poppins_400Regular', fontSize:15}}>
+            <Text style={{marginTop:6, fontFamily:'Montserrat_400Regular', fontSize:15}}>
                 plumbing
             </Text>
             <NumericInput value={all_datas.plumbing} onChange={value => handleChange("plumbing", value)}/>
@@ -93,7 +93,7 @@ function underscoreFormatter(str){
         <View>
         {allParameters.map((params, index) => (
             <View style={{flexDirection:'row', marginLeft:20}}>
-                <Text style={{marginTop:6, fontFamily:'Poppins_400Regular', fontSize:15}}>
+                <Text style={{marginTop:6, fontFamily:'Montserrat_400Regular', fontSize:15}}>
                 {underscoreFormatter(params.component_name)}
                 </Text>
                <Text>{params.component_score}</Text>
@@ -147,12 +147,12 @@ shadowRadius: 9.11,
 elevation: 8,
     },
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:28
     },
     contractTitle: {
-      fontFamily: "Poppins_400Regular",
+      fontFamily: "Montserrat_400Regular",
       color: "#3e3e3e",
       fontSize:17,
       marginLeft:10
@@ -168,14 +168,14 @@ elevation: 8,
     marginTop:25, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:18
 },
 state: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -183,7 +183,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

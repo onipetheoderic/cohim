@@ -23,10 +23,10 @@ const Carousel = (props) => {
     marginLeft:40}}>{props.title} </Text>
     
     <Text style={{fontSize:11,marginTop:20, marginLeft:40, 
-      marginRight:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+      marginRight:40, color:'white', fontFamily:'Montserrat_400Regular'}}>
     {props.description}
     </Text>
-    <Text style={{fontSize:11,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+    <Text style={{fontSize:11,marginTop:20, marginLeft:40, color:'white', fontFamily:'Montserrat_400Regular'}}>
     {props.contractName}
   
     </Text>
@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: '#1A4024',
         marginBottom: 2,
-        fontFamily:'Poppins_400Regular'
+        fontFamily:'Montserrat_400Regular'
       },
       listSubTitle: {
         fontSize: 14,
         color: '#1A4024',
-        fontFamily:'Poppins_400Regular'
+        fontFamily:'Montserrat_400Regular'
       },
     cardParent: {
         marginVertical:10,
@@ -105,12 +105,12 @@ const styles = StyleSheet.create({
     
     },
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:28
     },
     contractTitle: {
-      fontFamily: "Poppins_400Regular",
+      fontFamily: "Montserrat_400Regular",
       color: "#3e3e3e",
       fontSize:17,
       marginLeft:10
@@ -156,7 +156,7 @@ elevation: 19,
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -164,7 +164,7 @@ state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -172,7 +172,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

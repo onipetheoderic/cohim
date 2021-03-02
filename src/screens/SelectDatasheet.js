@@ -24,6 +24,8 @@ import {Colors} from '../components/colors'
 import TimeAgo from 'react-native-timeago';
 import Swipeout from 'react-native-swipeout';
 import {Toast} from 'native-base';
+import axios from 'axios';
+import {baseUrl} from '../api/constants';
 
 
 const SelectDatasheet = (props) => {    
@@ -79,6 +81,33 @@ const gotoLocalReport = (obj, title) => {
         contractId: id,
         token: token
     })
+}
+
+const sendDatasheet = (type, parameters) => {
+ 
+  let url = `${baseUrl}upload_materials/${type}/${id}`
+  console.log(url,"UUUU")
+  let stringifiedParams = JSON.stringify(parameters.road)
+  console.log(stringifiedParams,"sss")
+  fetch(url, {
+  method: 'POST', // or 'PUT'
+  body: stringifiedParams,
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+  showToastWithGravity("Datasheet succesfully uploaded")
+})
+.catch((error) => {
+  console.error('Error:', error);
+  showToastWithGravity("Error occured in uploading the Datasheet")
+});
+  
 }
 
 const getDatasheetById = (storageId) => {
@@ -190,93 +219,85 @@ const showToastWithGravity = (msg) => {
   })
 };
 
-  const rightActionOne = (id) => (
-    {
-        backgroundColor: '#fff',
-        component: (
-          <View style={styles.swipeoutSide}>
-            <Ionicons
-              size={30}
-              onPress={() => getDatasheetById(id)}
-              color='#ffc107'
-              name= {
-                Platform.OS === 'ios'
-                  ? `send`
-                  : 'send'
-              }/>
-            </View>
-          )
-        }
-  )
+  const rightActionOne = (id, type, parameters) =>{
+    if(type!="road" || type!="bridge" || type!="housing"){
+    return (  
+      {
+          backgroundColor: '#fff',
+          component: (
+            <View style={styles.swipeoutSide}>
+              <Ionicons
+                size={30}
+                onPress={() => sendDatasheet(type, parameters)}
+                color='blue'
+                name= {
+                  Platform.OS === 'ios'
+                    ? `send`
+                    : 'send'
+                }/>
+              </View>
+            )
+          }
+    )
+    }
+    else {
+      return (  
+        {
+            backgroundColor: '#fff',
+            component: (
+              <View style={styles.swipeoutSide}>
+                <Ionicons
+                  size={30}
+                  onPress={() => getDatasheetById(id)}
+                  color='blue'
+                  name= {
+                    Platform.OS === 'ios'
+                      ? `send`
+                      : 'send'
+                  }/>
+                </View>
+              )
+            }
+      )
+    }
+  } 
 
-  const rightActionTwo = (id) => (
-    {
-        backgroundColor: '#fff',
-        component: (
-          <View style={styles.swipeoutSide}>
-            <FontAwesome5
-              size={30}
-              onPress={() => props.navigation.navigate("DatasheetEdit", {id:id})}
-              color='#28a745'
-              name= {
-                Platform.OS === 'ios'
-                ? `edit`
-                : 'edit'
-              }
-            />
-          </View>
-        )
-      }
-  )
-/*
-
- <Swipeout left={[leftActionOne(savedDatasheet.id), leftActionTwo(savedDatasheet.id)]} 
-                right={[rightActionOne(savedDatasheet.id), leftActionTwo(savedDatasheet.id)]}  backgroundColor="#fff">
-            <TouchableOpacity style={styles.listContainer}>
-            <View style={styles.listHeader}>
-                <Text style={styles.listTitle}>{savedDatasheet.title}</Text>
-                <Text style={styles.listSubTitle}>{underscoreFormatter(savedDatasheet.type)}(<TimeAgo time={savedDatasheet.date}/>)</Text>
-            </View>
-            </TouchableOpacity>
-        </Swipeout>
-*/ 
-//   const leftActionOne = (id) => (
-//     {
-//         backgroundColor: '#fff',
-//         component: (
-//           <View style={styles.swipeoutSide}>
-//             <Ionicons
-//               size={40}
-//               onPress={() => alert("Share", +id)}
-//               color='#007bff'
-//               name= {
-//                 Platform.OS === 'ios'
-//                   ? `ios-share-outline`
-//                   : 'md-share-alt'
-//             }/>
-//           </View>
-//         )
-//       }
-//  )
-  // const leftActionTwo = (id) => (
-  //    {
-  //       backgroundColor: '#fff',
-  //       component: (
-  //         <View style={styles.swipeoutSide}>
-  //           <Ionicons
-  //             size={40}
-  //             onPress={() => alert("Complete"+id)}
-  //             color='#28a745'
-  //             name= {
-  //               Platform.OS === 'ios'
-  //                 ? `ios-checkmark-circle-outline`
-  //                 : 'md-checkmark-circle-outline'
-  //           }/>
-  //         </View>
-  //       )
-  //     }
-  // )
-
+  const rightActionTwo = (id, type) =>{
+    console.log(id, type)
+    if(type!="road" || type!="bridge" || type!="housing"){
+      return (
+        {
+            backgroundColor: '#fff',
+            component: (
+              <View style={styles.swipeoutSide}>
+              
+              </View>
+            )
+          }
+      )
+    }
+    else {
+      return  (
+        {
+            backgroundColor: '#fff',
+            component: (
+              <View style={styles.swipeoutSide}>
+                <FontAwesome5
+                  size={30}
+                  onPress={() => props.navigation.navigate("DatasheetEdit", {id:id, type:type})}
+                  color='#28a745'
+                  name= {
+                    Platform.OS === 'ios'
+                    ? `edit`
+                    : 'edit'
+                  }
+                />
+              </View>
+            )
+          }
+      )
+    }
+  }
 
   return (
     <View style={{flex:1}}> 
@@ -309,18 +330,7 @@ const showToastWithGravity = (msg) => {
     
         <ScrollView style={{marginTop:30}}>    
             <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-                {/* <View style={[styles.eachCard]}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('FileUploadScreen', {
-                    id: id,
-                    type: type,
-                    token:token,
-                    title: title,
-              })}>
-                <FontAwesome5 style={{alignSelf:'center', textAlign:'center'}} 
-    name="file-upload" size={41} color="green"/>
-  <Text style={styles.state}>Edit/Add Fields Datasheet</Text>
-              </TouchableOpacity>
-                </View> */}
+            
                
                     <View style={[styles.eachCard]}>
                     <TouchableOpacity onPress={() => props.navigation.navigate('FileUploadScreen', {
@@ -344,7 +354,7 @@ const showToastWithGravity = (msg) => {
         
         
         {savedDatasheet.map((savedDatasheet, index) => (
-        <Swipeout right={[rightActionOne(savedDatasheet.id), rightActionTwo(savedDatasheet.id)]}  backgroundColor="#fff">
+        <Swipeout right={[rightActionOne(savedDatasheet.id, savedDatasheet.type, savedDatasheet.parameters), rightActionTwo(savedDatasheet.id, savedDatasheet.type)]}  backgroundColor="#fff">
             <TouchableOpacity style={styles.listContainer}>
             <View style={styles.listHeader}>
                 <Text style={styles.listTitle}>{savedDatasheet.title}</Text>

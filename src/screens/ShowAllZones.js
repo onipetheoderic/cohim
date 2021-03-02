@@ -21,6 +21,7 @@ import HighwayCircleCard from '../components/highwayCircleCard'
 import { CounterContext } from "../../store";
 import StateCard from '../components/stateCard';
 import {Toast} from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -128,14 +129,8 @@ const setQuery = (val) => {
   }
 }
 
-
-if (isLoading) {
-  return (
-    <View style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <ActivityIndicator size="large" color="#07411D" />
-    </View>
-  )
-}  
+const loadSpinner = isLoading ? true : false;
+ 
   return (
 <View style={{flex:1}}>
 <HeaderWithBack navigation={props.navigation} color="white"/>
@@ -144,62 +139,59 @@ if (isLoading) {
         style={styles.image}
         source={require('../../assets/images/unnamed2.jpg')}
     >
-    <View style={{marginTop:26, marginRight:10, alignItems:'flex-end'}}>
-      <TouchableOpacity onPress={()=>setUserClicked(!userClicked)}>
-      <FontAwesome5 name="user" size={20} color="white" />
-      </TouchableOpacity>
-    {userClicked &&
-      <View style={{borderRadius:7, backgroundColor:'white', position:'absolute', top:25, width:60, height:30, justifyContent:'center'}}>
-        <TouchableOpacity onPress={()=>logOut()}>
-          <Text style={{color:'black', fontFamily:'Poppins_400Regular', textAlign:'center'}}>Logout</Text>
-        </TouchableOpacity>       
-      </View>
-      }
-    </View>
+   
       <Text style={{
-        marginTop:20,
+        marginTop:40,
         color:'white',
         fontWeight:'bold', 
         fontSize:22,
         marginLeft:40}}>Hello! {state.user.user.firstName}</Text>
-        <Text style={{fontSize:12,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Montserrat_400Regular'}}>
      List of Engineers Across The Six Zones of Nigeria
         </Text>
         <ScrollView horizontal 
         showsHorizontalScrollIndicator={false} style={{flexDirection:'row', marginTop:-40}}>
       
          <HighwayCircleCard iconName="envelope" title="Send/Broadcast Messages" navigation={props.navigation} link="AdminMessage"/>
-         {/* <HighwayCircleCard iconName="file-contract" title="View All Contracts" navigation={props.navigation} link="AllContracts"/> */}
+       
          <HighwayCircleCard iconName="user" title="Show All Engineers" navigation={props.navigation} link="ShowAllZones"/>
      
 
         </ScrollView>
     </ImageBackground>
 </View> 
-<View style={{flex:2.6,backgroundColor:'white',
-    borderTopRightRadius:40, 
-    marginTop:-30}}>
-    
-    <ScrollView style={{marginTop:30}}>
-    {/* 
-     // "northCentralLength": 52, "northEastLength": 43, "northWestLength": 39, 
-        //"southEastLength": 56, "southSouthLength": 45, "southWestLength": 40
-    */}
-        <View style={{flexDirection:'row', justifyContent:'center'}}>
-            <StateCard navigation={props.navigation} title="North Central" count={states.northCentralLength} littleDesc="View Zone" type="North Central" />
-            <StateCard navigation={props.navigation} title="North East" count={states.northEastLength} littleDesc="View Zone" type="North East" />
-        </View>
-        <View style={{flexDirection:'row', justifyContent:'center'}}>
-            <StateCard navigation={props.navigation} title="North West" count={states.northWestLength} littleDesc="View Zone" type="North West"/>
-            <StateCard navigation={props.navigation} title="South East" count={states.southEastLength} littleDesc="View Zone" type="South East"/>
-        </View>
-        <View style={{flexDirection:'row', justifyContent:'center'}}>
-            <StateCard navigation={props.navigation} title="South South" count={states.southSouthLength} littleDesc="View Zone" type="South South"/>
-            <StateCard navigation={props.navigation} title="South West" count={states.southWestLength} littleDesc="View Zone" type="South West"/>
-        </View>
-    </ScrollView>
-      </View>
 
+
+{!loadSpinner &&
+      <View style={{flex:2.6,backgroundColor:'white',
+          borderTopRightRadius:40, 
+          marginTop:-30}}>
+          
+          <ScrollView style={{marginTop:30}}>
+        
+              <View style={{flexDirection:'row', justifyContent:'center'}}>
+                  <StateCard navigation={props.navigation} title="North Central" count={states.northCentralLength} littleDesc="View Zone" type="North Central" />
+                  <StateCard navigation={props.navigation} title="North East" count={states.northEastLength} littleDesc="View Zone" type="North East" />
+              </View>
+              <View style={{flexDirection:'row', justifyContent:'center'}}>
+                  <StateCard navigation={props.navigation} title="North West" count={states.northWestLength} littleDesc="View Zone" type="North West"/>
+                  <StateCard navigation={props.navigation} title="South East" count={states.southEastLength} littleDesc="View Zone" type="South East"/>
+              </View>
+              <View style={{flexDirection:'row', justifyContent:'center'}}>
+                  <StateCard navigation={props.navigation} title="South South" count={states.southSouthLength} littleDesc="View Zone" type="South South"/>
+                  <StateCard navigation={props.navigation} title="South West" count={states.southWestLength} littleDesc="View Zone" type="South West"/>
+              </View>
+          </ScrollView>
+      </View>
+    }
+      <Spinner
+          //visibility of Overlay Loading Spinner
+          visible={loadSpinner}
+          //Text with the Spinner 
+          textContent="loading"
+          //Text style of the Spinner Text
+          textStyle={styles.spinnerTextStyle}
+        />
       </View>
   );
 };
@@ -241,7 +233,7 @@ image: {
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -249,7 +241,7 @@ state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -257,7 +249,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

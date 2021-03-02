@@ -1,0 +1,50 @@
+  <Text style={{fontFamily:'Poppins_400Regular',fontSize:13,alignSelf:'center', margin:6}}>Works Contract Performance Across Nigeria</Text>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
+          <View style={{backgroundColor:"#69F409"}}>
+            <Text style={{fontFamily:'Poppins_400Regular',fontSize:10, margin:6}}>Newly Awarded</Text>
+          </View>
+          <View style={{backgroundColor:"#C4D914"}}>
+            <Text style={{fontFamily:'Poppins_400Regular',fontSize:10, margin:6}}>Ongoing Contract</Text>
+          </View>
+          <View style={{backgroundColor:"#0BB434"}}>
+            <Text style={{fontFamily:'Poppins_400Regular',fontSize:10, margin:6}}>Completed Contract</Text>
+          </View>
+        </View>    
+    
+      <ScrollView style={{marginTop:-50, marginLeft:-20}} horizontal showsHorizontalScrollIndicator={false}>
+     
+      <VictoryChart
+         
+          height={400}
+          width={1400}
+          domainPadding={{x: 10, y: 10 }}
+          minDomain={{ y: 0 }}
+       
+          >
+{isAllWorksContractPresent &&
+  <VictoryStack
+  colorScale={["#0BB434", "#C4D914", "#69F409"]}
+>
+  <VictoryBar
+    data={completedContract}
+    />
+  <VictoryBar
+    data={ongoingContract}
+  />
+  <VictoryBar    
+    data={newlyAwarded}
+  />
+</VictoryStack>    
+}
+<VictoryAxis 
+tickFormat={allStates} 
+style={{
+  axis: {stroke: "white"},
+  axisLabel: {fontSize: 20, padding: 10},
+  tickLabels: {fontSize: 10, padding: 5}
+}}
+/>
+</VictoryChart>
+
+      
+      </ScrollView>

@@ -9,7 +9,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 export default function HeaderWithBackButton({navigation, color}) {
   let fontColor = color===undefined?'black':color
   return (
-    <View style={{width:'100%', marginTop:10,
+    <View style={{width:'100%', marginTop:40,
     backgroundColor:'transparent', 
     position:'absolute', zIndex:10000, alignItems:'center', height:60, flexDirection:'row', 
     justifyContent:'space-between'}}>

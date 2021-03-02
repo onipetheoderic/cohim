@@ -17,9 +17,10 @@ export default function MessageGround(props) {
     <SafeAreaView style={{backgroundColor:'white'}}>
         <View style={{backgroundColor:'white', marginBottom:10}}>
            
-            <View style={{flexDirection:'row', marginLeft:'auto', marginRight:'auto', justifyContent:'space-between', marginTop:10, marginBottom:10, width:'88%'}}>
-            <Text style={{fontFamily:'Poppins_400Regular', alignSelf:'center', marginRight:30, fontSize:20, textAlign:'center'}}>Inbox</Text>
-            <MsgButton title="New Message" buttonOnpress={props.buttonOnpress} />
+            <View style={{flexDirection:'row', justifyContent:'center', marginTop:55, marginBottom:10, }}>
+            <Text style={{fontFamily:'Montserrat_400Regular', alignSelf:'center', marginRight:30, fontSize:20, textAlign:'center'}}>Inbox</Text>
+                
+
             </View>
         </View>
        

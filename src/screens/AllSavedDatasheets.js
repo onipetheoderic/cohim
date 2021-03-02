@@ -119,7 +119,7 @@ const deleteDatasheet = (id) => {
            
       <ScrollView>
       {parameters.map((parameter, index) => (
-            <Text style={{marginHorizontal:20, marginVertical:15, fontSize:15, color:'white', fontFamily:'Poppins_400Regular'}}>
+            <Text style={{marginHorizontal:20, marginVertical:15, fontSize:15, color:'white', fontFamily:'Montserrat_400Regular'}}>
               {underscoreFormatter(parameter.component_name)}: {parameter.component_score}km
             </Text>
       ))}
@@ -130,11 +130,13 @@ const deleteDatasheet = (id) => {
 </Animatable.View>
     }
 <ScrollView>
-<Text style={{fontFamily:'Poppins_400Regular', marginTop:40, textAlign:'center',
- fontSize:14, margin:10}}>List of Inspection Datasheets Saved By You ({savedDatasheet.length})</Text>
+<Text style={{fontFamily:'Montserrat_400Regular', marginTop:60, textAlign:'center',
+ fontSize:13, marginLeft:20}}>List of Inspection Datasheets Saved By You ({savedDatasheet.length})</Text>
 <View style={{marginBottom:70}}>
 
-{savedDatasheet.map((savedDatasheet, index) => (
+{savedDatasheet.map((savedDatasheet, index) =>{
+  console.log("SSSSSSSSSSSSS", savedDatasheet)
+  return (
     <BeautyCard 
     key={savedDatasheet.id}
     title={savedDatasheet.title}
@@ -144,18 +146,9 @@ const deleteDatasheet = (id) => {
     monthName={MonthGetter(savedDatasheet.date)}
     handleTrash = {()=>handleTrash(savedDatasheet.id, index)}
     />
-    // <View style={styles.cardStyle} key={savedDatasheet.id}>
-    //     <View style={{marginLeft:20}}>
-    //     <Text style={{fontFamily:'Poppins_400Regular', fontSize:17, color:'white'}}>{savedDatasheet.title}</Text>
-    //     <Text style={{fontFamily:'Poppins_400Regular', fontSize:12, color:'white'}}><TimeAgo time={savedDatasheet.date}/></Text>
-    //     <Text style={{fontFamily:'Poppins_400Regular', fontSize:12, color:'white'}}>{underscoreFormatter(savedDatasheet.type)}</Text>
-    //     <TouchableOpacity onPress={()=>createTwoButtonAlert(savedDatasheet.id, index)}>
-    //         <Text style={{fontFamily: "Poppins_400Regular", fontSize:10}}>Datasheet setting</Text>
-    //     </TouchableOpacity>
-    //     </View>
-    // </View>
     
-))}
+)
+})}
 
 </View>
 
@@ -200,12 +193,12 @@ elevation: 5,
     },
     
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:28
     },
     contractTitle: {
-      fontFamily: "Poppins_400Regular",
+      fontFamily: "Montserrat_400Regular",
       color: "#3e3e3e",
       fontSize:17,
       marginLeft:10
@@ -221,14 +214,14 @@ elevation: 5,
     marginTop:25, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:18
 },
 state: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -236,7 +229,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

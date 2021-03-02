@@ -16,18 +16,19 @@ import HighwayCircleCard from '../components/highwayCircleCard'
 import { CounterContext } from "../../store";
 import DisplayName from '../helpers/displayName';
 import DisplayPhone from '../helpers/displayPhone';
+import HeaderWithBack from '../components/headerWithBack';
 import DisplayId from '../helpers/displayId';
 import {Toast} from 'native-base';
 import UserCard from '../components/userCard';
 import { NavigationActions, StackActions } from 'react-navigation'
-//count, littleDesc, title
+import Spinner from 'react-native-loading-spinner-overlay';
 const screenWidth = Dimensions.get("window").width;
 
 
 
 const ShowEngineersStateSingle = (props) => {
   const [states, setStates] = useState([]);
-
+  const [type, setType] = useState("");
   const [userClicked, setUserClicked] = useState(false)
   const [searchValue, setSearchValue] = useState("");
   const [contracts, setContracts] = useState([]);
@@ -64,7 +65,7 @@ const _default = (str) => {
 
 useEffect(() => {
     let type = props.navigation.getParam('type', null);
- console.log("the types",type )
+  setType(type)
  showHighwaySingleState(state.user.token, type).then((data)=>{
     console.log("the users data", data)
     if(data.success==true){
@@ -110,14 +111,7 @@ const logOut = () => {
 
 
 
-
-if (isLoading) {
-  return (
-    <View style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <ActivityIndicator size="large" color="#07411D" />
-    </View>
-  )
-}  
+const loadSpinner = isLoading ? true : false;
   return (
 <View style={{flex:1}}>
 <HeaderWithBack navigation={props.navigation} color="white"/>
@@ -126,26 +120,15 @@ if (isLoading) {
         style={styles.image}
         source={require('../../assets/images/unnamed2.jpg')}
     >
-    <View style={{marginTop:26, marginRight:10, alignItems:'flex-end'}}>
-      <TouchableOpacity onPress={()=>setUserClicked(!userClicked)}>
-      <FontAwesome5 name="user" size={20} color="white" />
-      </TouchableOpacity>
-    {userClicked &&
-      <View style={{borderRadius:7, backgroundColor:'white', position:'absolute', top:25, width:60, height:30, justifyContent:'center'}}>
-        <TouchableOpacity onPress={()=>logOut()}>
-          <Text style={{color:'black', fontFamily:'Poppins_400Regular', textAlign:'center'}}>Logout</Text>
-        </TouchableOpacity>       
-      </View>
-      }
-    </View>
-      <Text style={{
-        marginTop:20,
+ 
+ <Text style={{
+        marginTop:40,
         color:'white',
-        fontWeight:'bold', 
+        fontFamily:'Montserrat_600SemiBold',
         fontSize:22,
         marginLeft:40}}>Hello! {state.user.user.firstName}</Text>
-        <Text style={{fontSize:12,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
-     List of Engineers In a Single State In Nigeria
+        <Text style={{fontSize:12,marginTop:10, marginLeft:40, color:'white', fontFamily:'Montserrat_400Regular'}}>
+     List of Engineers Across In the {type}
         </Text>
         <ScrollView horizontal 
         showsHorizontalScrollIndicator={false} style={{flexDirection:'row', marginTop:-40}}>
@@ -161,7 +144,7 @@ if (isLoading) {
 <View style={{flex:2.6,backgroundColor:'white',
     borderTopRightRadius:40, 
     marginTop:-30}}>
-    
+    {!loadSpinner &&
     <ScrollView style={{marginTop:30}}>
     
   
@@ -176,8 +159,16 @@ if (isLoading) {
             ))}
        
     </ScrollView>
+    }
       </View>
-
+      <Spinner
+          //visibility of Overlay Loading Spinner
+          visible={loadSpinner}
+          //Text with the Spinner 
+          textContent="loading"
+          //Text style of the Spinner Text
+          textStyle={styles.spinnerTextStyle}
+        />
       </View>
   );
 };
@@ -219,7 +210,7 @@ image: {
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -227,7 +218,7 @@ state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -235,7 +226,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

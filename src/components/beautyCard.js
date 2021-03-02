@@ -5,16 +5,10 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto'
 export default function BeautyCard(props) {
     
-/*
-<TouchableOpacity onPress={props.handleSubmit} style={{flex:1, marginHorizontal:10, height:50, justifyContent:'center'}}>
-        <LinearGradient style={{borderRadius:3,height:40, justifyContent:'center'}} colors={['#ffb656', '#f98845']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
-            <Text style={{textAlign:'center', fontFamily:'Poppins_400Regular',  color:'white', fontSize:17}}>{props.title}</Text>
-        </LinearGradient>
-    </TouchableOpacity>
-*/ 
+ 
 const centralizer = (str) => {
-    //5 length == 0
-    let newMargin = 5-str.length;
+    const stringLength = str != undefined ? str.length : 0
+    let newMargin = 5-stringLength;
     let finalMargin = newMargin*6.5
     return finalMargin
 }
@@ -27,7 +21,7 @@ const centralizer = (str) => {
         left:0,marginLeft:centralizer(monthName),
         transformOrigin: 'top left',
         transform: [{ rotate: '270deg'}]}}>
-            <Text style={{fontFamily:'Poppins_400Regular',fontSize:20,        
+            <Text style={{fontFamily:'Montserrat_400Regular',fontSize:20,        
             color:'white',
            }}>{monthName}</Text>
         </View>
@@ -35,23 +29,23 @@ const centralizer = (str) => {
         <LinearGradient colors={['#FDFFFE','#E5FEE8', '#C7FECE']} 
         style={{alignSelf:'flex-end', borderRadius: 25, width:'80%', height:130, backgroundColor:'white'}}>
             <View style={{flexDirection:'row'}}>
-            <Text style={{fontFamily:'Poppins_400Regular',fontSize:16,marginTop:10, marginLeft:20}}>
+            <Text style={{fontFamily:'Montserrat_400Regular',fontSize:16,marginTop:10, marginLeft:20}}>
                 {props.type}
             </Text>
            
             </View>
             <View style={{flexDirection:'row'}}>
-            <Text style={{fontFamily:'Poppins_400Regular',fontSize:36,marginTop:0, marginLeft:20}}>
+            <Text style={{fontFamily:'Montserrat_400Regular',fontSize:36,marginTop:0, marginLeft:20}}>
                 {props.day}
             </Text>
-            <Text style={{fontFamily:'Poppins_400Regular',fontSize:12,marginTop:20}}>
+            <Text style={{fontFamily:'Montserrat_400Regular',fontSize:12,marginTop:20}}>
                 ({props.time})
             </Text>
             </View>
             
             <View style={{position:'relative'}}>
 
-                <Text style={{width:'80%', fontFamily:'Poppins_400Regular',fontSize:15,marginTop:10, marginLeft:20}}>
+                <Text style={{width:'80%', fontFamily:'Montserrat_400Regular',fontSize:15,marginTop:10, marginLeft:20}}>
                 {props.title}
                 </Text>
                 <View style={{position:'absolute', right:0}}>

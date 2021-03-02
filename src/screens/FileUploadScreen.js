@@ -374,12 +374,12 @@ const submitMessage = () => {
             fontSize: 22,
             color: '#1A4024',
             marginBottom: 2,
-            fontFamily:'Poppins_400Regular'
+            fontFamily:'Montserrat_400Regular'
           },
           listSubTitle: {
             fontSize: 14,
             color: '#1A4024',
-            fontFamily:'Poppins_400Regular'
+            fontFamily:'Montserrat_400Regular'
           },
         cardParent: {
             marginVertical:10,
@@ -403,12 +403,12 @@ const submitMessage = () => {
         
         },
         text: {
-            fontFamily: "Poppins_400Regular",
+            fontFamily: "Montserrat_400Regular",
             color: "#3e3e3e",
             fontSize:28
         },
         contractTitle: {
-          fontFamily: "Poppins_400Regular",
+          fontFamily: "Montserrat_400Regular",
           color: "#3e3e3e",
           fontSize:17,
           marginLeft:10
@@ -455,7 +455,7 @@ const submitMessage = () => {
         marginBottom:20,
         textAlign:'center',
         color:'#095A1F',
-        fontFamily:'Poppins_400Regular', 
+        fontFamily:'Montserrat_400Regular', 
         fontSize:15,
         
     },
@@ -463,7 +463,7 @@ const submitMessage = () => {
         marginTop:5, 
         textAlign:'center',
         color:'#095A1F',
-        fontFamily:'Poppins_400Regular', 
+        fontFamily:'Montserrat_400Regular', 
         fontSize:13,
         
     },
@@ -471,7 +471,7 @@ const submitMessage = () => {
         marginTop:10, 
         textAlign:'center',
         color:'white',
-        fontFamily:'Poppins_400Regular', 
+        fontFamily:'Montserrat_400Regular', 
         fontSize:37,
     },
     

@@ -192,7 +192,7 @@ console.log("YYYYYYYYYYYYYYYY",singleHdmi)
     {userClicked &&
       <View style={{borderRadius:7, backgroundColor:'white', position:'absolute', top:25, width:60, height:30, justifyContent:'center'}}>
         <TouchableOpacity onPress={()=>logOut()}>
-          <Text style={{color:'black', fontFamily:'Poppins_400Regular', textAlign:'center'}}>Logout</Text>
+          <Text style={{color:'black', fontFamily:'Montserrat_400Regular', textAlign:'center'}}>Logout</Text>
         </TouchableOpacity>       
       </View>
       }
@@ -203,7 +203,7 @@ console.log("YYYYYYYYYYYYYYYY",singleHdmi)
         fontWeight:'bold', 
         fontSize:22,
         marginLeft:40}}>Hello! {user.firstName}</Text>
-        <Text style={{fontSize:15,marginTop:20, marginLeft:40, color:'white', fontFamily:'Poppins_400Regular'}}>
+        <Text style={{fontSize:15,marginTop:20, marginLeft:40, color:'white', fontFamily:'Montserrat_400Regular'}}>
         HDMI Verification Page
         </Text>
         <ScrollView horizontal 
@@ -235,7 +235,7 @@ console.log("YYYYYYYYYYYYYYYY",singleHdmi)
                 value={content}
                 placeholder="FMWH-VMP-0000000000" 
                 multiline={true}
-                style={{marginLeft:20,fontSize:20, fontFamily:'Poppins_400Regular',}}
+                style={{marginLeft:20,fontSize:20, fontFamily:'Montserrat_400Regular',}}
                 onChangeText={(text) => changeContent(text)}
                 />
             </View>
@@ -321,12 +321,12 @@ const styles = StyleSheet.create({
     
     },
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "Montserrat_400Regular",
         color: "#3e3e3e",
         fontSize:28
     },
     contractTitle: {
-      fontFamily: "Poppins_400Regular",
+      fontFamily: "Montserrat_400Regular",
       color: "#3e3e3e",
       fontSize:17,
       marginLeft:10
@@ -372,7 +372,7 @@ elevation: 19,
     marginBottom:10,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -381,7 +381,7 @@ title3: {
     marginBottom:10,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:17,
     
 },
@@ -391,7 +391,7 @@ title3: {
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -399,7 +399,7 @@ state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:15,
     
 },
@@ -407,7 +407,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 

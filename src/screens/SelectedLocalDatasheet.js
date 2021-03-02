@@ -12,7 +12,7 @@ import PlayGround from '../components/playGround'
 import HeaderWithBack from '../components/headerWithBack';
 import { DatasheetPost} from '../api/apiService';
 import {Colors} from '../components/colors'
-import DocumentPicker from 'react-native-document-picker';
+import * as DocumentPicker from 'expo-document-picker';
 import SaveButton from '../components/saveButton';
 import {Toast} from 'native-base';
 
@@ -240,3 +240,4 @@ currentPercentage: {
 },
 
 })
+

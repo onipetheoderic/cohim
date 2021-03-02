@@ -9,7 +9,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import { NavigationContainer } from '@react-navigation/native';
 import NetInfo from '@react-native-community/netinfo';
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
 import { Pacifico_400Regular } from '@expo-google-fonts/pacifico';
 import {
   useFonts,
@@ -32,6 +32,29 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
+
+import {
+  Montserrat_100Thin,
+  Montserrat_100Thin_Italic,
+  Montserrat_200ExtraLight,
+  Montserrat_200ExtraLight_Italic,
+  Montserrat_300Light,
+  Montserrat_300Light_Italic,
+  Montserrat_400Regular,
+  Montserrat_400Regular_Italic,
+  Montserrat_500Medium,
+  Montserrat_500Medium_Italic,
+  Montserrat_600SemiBold,
+  Montserrat_600SemiBold_Italic,
+  Montserrat_700Bold,
+  Montserrat_700Bold_Italic,
+  Montserrat_800ExtraBold,
+  Montserrat_800ExtraBold_Italic,
+  Montserrat_900Black,
+  Montserrat_900Black_Italic,
+} from '@expo-google-fonts/montserrat';
+
+
 import { Font } from 'expo';
 
 import { NetworkProvider } from 'react-native-offline';
@@ -64,6 +87,14 @@ import ShowEngineersStateSingle from './src/screens/ShowEngineersStateSingle';
 import SingleUser from './src/screens/SingleUser';
 import HousingMenu from './src/screens/HousingMenu';
 import HousingTemplate from './src/screens/HousingTemplate';
+import UploadRoadFurniture from './src/screens/UploadRoadFurniture';
+import UploadRoadEconomy from './src/screens/UploadRoadEconomy';
+import UploadWeatherCondition from './src/screens/UploadWeatherCondition';
+
+import Equipment from './src/screens/Equipment';
+import Materials from './src/screens/Materials';
+import DirectJob from './src/screens/DirectJob';
+import IndirectJob from './src/screens/IndirectJob';
 
 
 
@@ -101,7 +132,26 @@ let [fontsLoaded] = useFonts({
   Poppins_800ExtraBold,
   Poppins_800ExtraBold_Italic,
   Poppins_900Black,
+  
   Poppins_900Black_Italic,
+  Montserrat_100Thin,
+  Montserrat_100Thin_Italic,
+  Montserrat_200ExtraLight,
+  Montserrat_200ExtraLight_Italic,
+  Montserrat_300Light,
+  Montserrat_300Light_Italic,
+  Montserrat_400Regular,
+  Montserrat_400Regular_Italic,
+  Montserrat_500Medium,
+  Montserrat_500Medium_Italic,
+  Montserrat_600SemiBold,
+  Montserrat_600SemiBold_Italic,
+  Montserrat_700Bold,
+  Montserrat_700Bold_Italic,
+  Montserrat_800ExtraBold,
+  Montserrat_800ExtraBold_Italic,
+  Montserrat_900Black,
+  Montserrat_900Black_Italic,
   'Roboto': require('native-base/Fonts/Roboto.ttf'),
   'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
 });
@@ -158,7 +208,15 @@ const AppSwitchNavigator = createStackNavigator(
     ShowEngineersStateSingle:ShowEngineersStateSingle,
     SingleUser:SingleUser,
     HousingMenu:HousingMenu,
-    HousingTemplate:HousingTemplate
+    HousingTemplate:HousingTemplate,
+    UploadRoadFurniture: UploadRoadFurniture,
+    UploadRoadEconomy: UploadRoadEconomy,
+    UploadWeatherCondition: UploadWeatherCondition,
+    Equipment: Equipment,
+    Materials: Materials,
+    DirectJob: DirectJob, 
+    IndirectJob: IndirectJob
+
 },{
 headerMode:'none',
 }

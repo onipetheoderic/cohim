@@ -176,13 +176,13 @@ return (
   <HeaderWithBack navigation={props.navigation} />
   <ScrollView showsVerticalScrollIndicator={false} style={{marginTop:50, marginBottom:20}}>
  
-    <Text style={styles.title}>Enter Datasheet Details, The Title Field must Not be Empty</Text>
+    <Text style={styles.title2}>Enter Datasheet Details, The Title Field must Not be Empty</Text>
     <View style={{justifyContent:'center', alignSelf:'center', width:'90%'}}>
             
             <TextInput
               placeholder="Title of Datasheet"
               textAlign={'center'}
-              style={{borderRadius:5, height: 45, width:'100%', fontFamily:'Poppins_400Regular', borderColor: 'gray', borderWidth: 1 }}
+              style={{borderRadius:5, height: 45, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
               onChangeText={text => setTitle(text)}
               />
       </View>
@@ -199,7 +199,7 @@ return (
               keyboardType="numeric"
               placeholder="Amount"
               textAlign={'center'}
-              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Poppins_400Regular', borderColor: 'gray', borderWidth: 1 }}
+              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
               onChangeText={text => handleAmount(index, text)}
               value={params.amount}
               />
@@ -209,7 +209,7 @@ return (
               keyboardType="numeric"
               placeholder="Quantity"
               textAlign={'center'}
-              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Poppins_400Regular', borderColor: 'gray', borderWidth: 1 }}
+              style={{borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
               onChangeText={text => handleQuantity(index, text)}
               value={params.qty}
               />
@@ -219,7 +219,7 @@ return (
             <TextInput
               placeholder="Unit"
               textAlign={'center'}
-              style={{ borderRadius:5, height: 40, width:'100%', fontFamily:'Poppins_400Regular', borderColor: 'gray', borderWidth: 1 }}
+              style={{ borderRadius:5, height: 40, width:'100%', fontFamily:'Montserrat_400Regular', borderColor: 'gray', borderWidth: 1 }}
               onChangeText={text => handleUnit(index, text)}
               value={params.unit}
               />
@@ -276,20 +276,30 @@ shadowRadius: 12.35,
 
 elevation: 19,
   },
-  title: {
+  title2: {
     marginTop:10, 
+    marginLeft:30,
     marginBottom:20,
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
-    fontSize:15,
+    fontFamily:'Montserrat_400Regular', 
+    fontSize:13,
     
+},
+title: {
+  marginTop:10, 
+  marginBottom:20,
+  textAlign:'center',
+  color:'#095A1F',
+  fontFamily:'Montserrat_400Regular', 
+  fontSize:12,
+  
 },
 state: {
     marginTop:5, 
     textAlign:'center',
     color:'#095A1F',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:13,
     
 },
@@ -297,7 +307,7 @@ currentPercentage: {
     marginTop:10, 
     textAlign:'center',
     color:'white',
-    fontFamily:'Poppins_400Regular', 
+    fontFamily:'Montserrat_400Regular', 
     fontSize:37,
 },
 
