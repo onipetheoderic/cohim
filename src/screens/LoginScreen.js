@@ -103,15 +103,30 @@ const loginPost = () => {
                     )                  
                 }
                 else { 
-                    setLoading(false)
-                    AsyncStorage.setItem("@SessionObj", JSON.stringify(payload)).then(
-                        () => AsyncStorage.getItem("@SessionObj")
-                              .then((result)=>{
-                                    console.log("TEST",result)                   
-                                    dispatch({ type: 'loginUser', isSuper:true, payload:payload})
-                                    props.navigation.navigate("Dashboard")
-                        })
-                    )    
+                    if(data.position=="5"){
+                        setLoading(false)
+                        showToastWithGravity("You are not authorized to use this app")
+                    }
+                    if(data.position=="8"){
+                        setLoading(false)
+                        showToastWithGravity("You are not authorized to use this app")
+                    }
+                    if(data.position=="9"){
+                        setLoading(false)
+                        showToastWithGravity("You are not authorized to use this app")
+                    }
+                    else {
+                        setLoading(false)
+                        AsyncStorage.setItem("@SessionObj", JSON.stringify(payload)).then(
+                            () => AsyncStorage.getItem("@SessionObj")
+                                  .then((result)=>{
+                                        console.log("TEST",result)                   
+                                        dispatch({ type: 'loginUser', isSuper:true, payload:payload})
+                                        props.navigation.navigate("Dashboard")
+                            })
+                        )    
+                    }
+                  
                 }
                
             }else{
